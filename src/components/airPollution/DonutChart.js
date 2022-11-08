@@ -27,8 +27,8 @@ export const DonutChart = ({ grade, value, name, color }) => {
 				labelPosition={-20}
 			/>
 
-			<div className='mt-5 font-semibold text-center'>{name}</div>
-			<div className='relative text-lg text-center bottom-24'>{value}</div>
+			<div className='mt-5 font-semibold text-[#272727] text-center'>{name}</div>
+			<div className='relative text-lg text-[#272727] text-center bottom-24'>{value}</div>
 
 		</div>
 	)
