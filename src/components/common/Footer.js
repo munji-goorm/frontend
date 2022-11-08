@@ -6,7 +6,7 @@ import { ReactComponent as MailIcon } from '../../assets/icons/mail.svg';
 
 export default function Footer() {
 	return (
-		<div className='flex flex-col h-[25rem] mt-[5rem] bg-[#ffffff] outline outline-1 outline-[#cccccc] items-center justify-center'>
+		<div className='flex flex-col h-[22rem] mt-[5rem] bg-[#ffffff] outline outline-1 outline-[#cccccc] items-center justify-center text-[#272727]'>
 			<div className='flex flex-col w-[63rem] h-[9rem] justify-center'>
 				<div className='flex flex-row items-center h-[4rem]'>
 					<img className="w-10" alt="appIcon" src={AppIcon}></img>
@@ -17,7 +17,7 @@ export default function Footer() {
 				</div>
 			</div>
 
-			<div className='w-[63rem] h-[12rem] flex flex-row justify-between'>
+			<div className='w-[63rem] h-[10rem] flex flex-row justify-between'>
 				<div className='flex flex-row '>
 					<div className='mr-[4rem]'>
 						<div className='font-Kyobo mb-[0.2rem] text-lg'>

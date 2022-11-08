@@ -1,5 +1,5 @@
 import './App.css';
-import { Header } from './components/common';
+import { Header, Footer } from './components/common';
 import { AirPollution } from './pages';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <div className="App">
       <Header/>
       <AirPollution/>
+      <Footer/>
     </div>
   );
 }
