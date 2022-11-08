@@ -20,19 +20,19 @@ export const MainBox = () => {
 	const [CAIstate, setCAIstate] = useState({
 		grade: "매우 나쁨",
 		msg: "오늘은 나가지마세요!!",
-		icon: <img className="w-24 inline" alt="appIcon" src={VeryBad}></img>,
+		icon: <img className="inline w-24" alt="appIcon" src={VeryBad}></img>,
 	});
 
 	return (
-		<div className='px-56'>
+		<div className='w-[63rem] h-[26.15rem]'>
 			<div className='rounded-md w-full h-96 bg-[#D5534D]'>
-				<div className='mainInfo relative'>
+				<div className='relative mainInfo'>
 					<div className='flex justify-center py-10'>
 						<div className='px-3'>{CAIstate.icon}</div>
 						<div className='px-6 py-6 font-Kyobo text-5xl text-center text-[#ffffff]'>{CAIstate.grade}</div>
 					</div>
 
-					<div className='speechBubble justify-center'>
+					<div className='justify-center speechBubble'>
 						<div className='relative flex justify-center bottom-10'>
 							<SpeechBubble />
 							<div className='absolute text-2xl font-Kyobo top-5 text-[#ffffff]'>
@@ -42,7 +42,7 @@ export const MainBox = () => {
 					</div>
 				</div>
 
-				<div className='instructions flex justify-center my-4'>
+				<div className='flex justify-center my-4 instructions'>
 					<InstructionBox icon={<Mask/>} title="마스크" msg="필수" className='mx-10'/>
 					<InstructionBox icon={<SensitiveGroup/>} title="민감군" msg="착용권고"/>
 					<InstructionBox icon={<Outdoor/>} title="야외활동" msg="지장없음"/>
