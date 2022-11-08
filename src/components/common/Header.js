@@ -1,5 +1,5 @@
 import React from 'react';
-import AppIcon from '../../assets/images/munji.png';
+import AppIcon from '../../assets/images/goodMunji.png';
 import { ReactComponent as MenuIcon } from '../../assets/icons/menu.svg';
 
 export default function header() {
