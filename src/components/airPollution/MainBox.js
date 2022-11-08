@@ -24,8 +24,8 @@ export const MainBox = () => {
 	});
 
 	return (
-		<div className='w-[63rem] h-[26.15rem]'>
-			<div className='rounded-md w-full h-96 bg-[#D5534D]'>
+		<div className='flex items-center w-[63rem] h-[25rem] my-[1rem]'>
+			<div className='rounded-md w-full h-[25rem] bg-[#D5534D]'>
 				<div className='relative mainInfo'>
 					<div className='flex justify-center py-10'>
 						<div className='px-3'>{CAIstate.icon}</div>
