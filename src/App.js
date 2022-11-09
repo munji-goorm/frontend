@@ -1,14 +1,17 @@
 import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header, Footer } from './components/common';
 import { AirPollution } from './pages';
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <AirPollution/>
-      <Footer/>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<AirPollution />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
 }
 
