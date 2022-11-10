@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header, Footer } from './components/common';
-import { AirPollution } from './pages';
+import { AirPollution, OntheMap } from './pages';
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<AirPollution />} />
+        <Route path="/map" element={<OntheMap />} />
       </Routes>
       <Footer />
     </BrowserRouter>
