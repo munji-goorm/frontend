@@ -7,8 +7,7 @@ export default function Map() {
 			<div className='my-[2rem] flex justify-center'>
 				<MapContainer />
 			</div>
-			<InfoBox />
+			<InfoBox name='CAI'/>
 		</div>
-
 	)
 }
