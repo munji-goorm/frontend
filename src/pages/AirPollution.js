@@ -1,20 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
-import UserLocation from '../apis/UserLocation';
-import { DailyForecastBox, MainBox, PollutantBox, WholeAirInfoBox } from '../components/AirPollution';
-import { ReactComponent as LocationIcon } from '../assets/icons/location.svg';
-import { ReactComponent as DropDownArrowIcon } from '../assets/icons/dropDownArrow.svg';
-import { ReactComponent as SearchIcon } from '../assets/icons/search.svg';
+import React from 'react';
+import { DailyForecastBox, HitmapBox, MainBox, PollutantBox, WholeAirInfoBox } from '../components/AirPollution';
 
 export default function AirPollution() {
-	//const userLocation = UserLocation();
 
 	return (
-		<div className='flex flex-col items-center'>
+		<div className='flex flex-col items-center w-full'>
 			<MainBox />
-			
 			<div className='w-[63rem] flex flex-row justify-between'>
 				<DailyForecastBox />
 				<WholeAirInfoBox />
+			</div>
+			<div className='w-[63rem] flex flex-row justify-between'>
+				<HitmapBox name="미세먼지" val="pm10"/>
+				<HitmapBox name="초미세먼지" val="pm2.5"/>
 			</div>
 			<PollutantBox />
 		</div>
