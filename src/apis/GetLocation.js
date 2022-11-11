@@ -30,8 +30,8 @@ export const GetLocation = () => {
 				navigator.geolocation.getCurrentPosition(
 					onSuccess, onError, {
 					enableHighAccuracy: false,
-					maximumAge: 1000 * 3600 * 24, //30s
-					timeout: 1000 * 30 * 1, //24h
+					maximumAge: 1000 * 3600 * 24, //24h
+					timeout: 3000, //3sec
 				}
 				)
 			} else {

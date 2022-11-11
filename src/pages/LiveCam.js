@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { Coord2TM, GetStationName, UseGeolocation } from '../apis';
+import { Coord2TM, GetLocation, GetStationName } from '../apis';
 
 
 export default function LiveCam() {
-	
-	const coord = UseGeolocation();
+
+	const coord = GetLocation();
 	console.log("위경도");
 	console.log(coord);
-	
+
 	const tm = Coord2TM(coord);
 	console.log("tm 좌표");
 	console.log(tm);
@@ -17,6 +17,9 @@ export default function LiveCam() {
 	console.log("-------------------");
 
 	return (
-		<div className='text-2xl'>{stationName}</div>
+		<>
+			<div className='text-2xl'>{stationName}</div>
+		</>
+
 	)
 }

@@ -1,33 +1,18 @@
-import React from 'react'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export const Coord2address = () => {
+export const Coord2address = (coord) => {
 	// 위도, 경도를 kakaoMap API를 통해 주소로 변환합니다.
-
-	//let lat =
-	// 사용자 위치에 해당하는 위도, 경도를 불러옵니다.
-
-		navigator.geolocation.getCurrentPosition(function(position){
-			let lat = position.coords.latitude; //위도
-			let lon = position.coords.longitude; //경도
-			console.log(lat, lon);
-		})
-	
-
-
-
-	// 위도, 경도를 kakaoMap API를 통해 tm좌표로 변환합니다.
-	const [tm, setTM] = useState();
-
 	const API_KEY = process.env.REACT_APP_KAKAOMAP_API_KEY_REST;
-	const longitude = 126.8807123; //위도
-	const latitude = 37.5461726; //경도
+	
+	const [addr, setAddr] = useState("종로구 궁정동");
+	
+	const url = "https://dapi.kakao.com/v2/local/geo/coord2address.json";
 
-	const url = "https://dapi.kakao.com/v2/local/geo/transcoord.json";
-
-	const data = {
-		x: longitude,
-		y: latitude,
-		output_coord: "TM",
+	const params = {
+		x: coord.lng, //경도
+		y: coord.lat, //위도
+		input_coord: "WGS84",
 	};
 
 	const headers = {
@@ -35,19 +20,19 @@ export const Coord2address = () => {
 	};
 
 	useEffect(() => {
-		const getTM = async () => {
+		const getAddr = async () => {
 			try {
 				const res = await axios.get(url, {
-					params: data,
+					params: params,
 					headers: headers
 				})
-				setTM(res.data.documents[0]);
+				setAddr(res.data.documents[0].address["region_2depth_name"] + ' ' + res.data.documents[0].address["region_3depth_name"]);
 			} catch (e) {
 				console.error(e.message);
 			}
 		};
-		getTM();
-	}, []);
-
-	return tm
+		getAddr();
+	}, [coord]);
+	
+	return addr
 }
