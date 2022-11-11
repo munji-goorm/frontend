@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export const Coord2TM = (coord) => {
-
+	// 받아온 위도, 경도를 kakaoMap API를 통해 tm좌표로 변환합니다.
 	const API_KEY = process.env.REACT_APP_KAKAOMAP_API_KEY_REST;
-
-	// 1. 받아온 위도, 경도를 kakaoMap API를 통해 tm좌표로 변환합니다.
 	const [tm, setTM] = useState({
-		tmX: 198167.420154385, //중구
+		tmX: 198167.420154385, //중구 
 		tmY: 451311.01317975856, //중구
 	});
 
@@ -37,7 +35,7 @@ export const Coord2TM = (coord) => {
 			} catch (e) {
 				console.error(e.message);
 			}
-		};
+		}
 		getTM();
 	}, [coord]);
 
