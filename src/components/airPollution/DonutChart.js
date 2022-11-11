@@ -24,11 +24,11 @@ export const DonutChart = ({ grade, value, name, color }) => {
 				labelStyle={{
 					fontSize: "18px",
 				}}
-				labelPosition={-20}
+				labelPosition={0}
 			/>
 
 			<div className='mt-5 font-semibold text-[#272727] text-center'>{name}</div>
-			<div className='relative text-lg text-[#272727] text-center bottom-24'>{value}</div>
+			{/* <div className='relative text-lg text-[#272727] text-center bottom-[6.5rem]'>{value}</div> */}
 
 		</div>
 	)
