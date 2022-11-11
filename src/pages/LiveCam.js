@@ -35,9 +35,9 @@ export default function LiveCam() {
 
 			<div className='w-[63rem] h-[10.55rem] flex justify-between'>
 				
-					<iframe src="https://www.youtube.com/embed/-JhoMGoAfFc?&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-					<iframe src="https://www.youtube.com/embed/VOvSvsZXZwg?&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-					<iframe src="https://www.youtube.com/embed/oEXCjWsksA8?&autoplay=1&mute=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+					<iframe src="https://www.youtube.com/embed/-JhoMGoAfFc?&autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
+					<iframe src="https://www.youtube.com/embed/VOvSvsZXZwg?&autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
+					<iframe src="https://www.youtube.com/embed/oEXCjWsksA8?&autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
 			</div>
 		</div>
 	)
