@@ -12,7 +12,7 @@ export const PM10Box = () => {
 			<div className='flex justify-between'>
 				<div className='flex items-center mx-5 mb-5 w-[28rem]'>
 					<div className='font-semibold'>
-						국내 환경부 기준
+						국내 기준
 					</div>
 					<div className='mx-2'>
 						<div className='relative w-[20rem]'>
