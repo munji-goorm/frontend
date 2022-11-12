@@ -64,7 +64,6 @@ export default function Header() {
 									<DropDownArrowIcon className='inline w-6' />
 								</button>
 							</div>
-
 							{
 									location.pathname === '/'
 									? <div className='flex flex-row items-center'>
@@ -112,7 +111,6 @@ export default function Header() {
 										</div>
 									)
 								}
-							
 						</div>
 					</div>
 				</div>
@@ -137,23 +135,53 @@ export default function Header() {
 									<DropDownArrowIcon className='inline w-6 rotate-180' />
 								</button>
 							</div>
-
-							<div className='flex flex-row items-center'>
-								<Link to="/">
-									<button
-										className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'
-										onClick={(e) => { }}
-									>대기오염 현황</button>
-								</Link>
-								<Link to={{
-									pathname: "/map"
-								}}>
-									<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]' >지도로 보기</button>
-								</Link>
-								<Link to="/livecam">
-									<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
-								</Link>
-							</div>
+							{
+									location.pathname === '/'
+									? <div className='flex flex-row items-center'>
+									<Link to="/">
+										<button
+											className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'
+											onClick={(e) => { }}
+										>대기오염 현황</button>
+									</Link>
+									<Link to="/map">
+										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
+									</Link>
+									<Link to="/livecam">
+										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
+									</Link>
+								</div>
+									: ( location.pathname === '/map'
+											? <div className='flex flex-row items-center'>
+											<Link to="/">
+												<button
+													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
+													onClick={(e) => { }}
+												>대기오염 현황</button>
+											</Link>
+											<Link to="/map">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>지도로 보기</button>
+											</Link>
+											<Link to="/livecam">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
+											</Link>
+										</div>
+											: <div className='flex flex-row items-center'>
+											<Link to="/">
+												<button
+													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
+													onClick={(e) => { }}
+												>대기오염 현황</button>
+											</Link>
+											<Link to="/map">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
+											</Link>
+											<Link to="/livecam">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>실시간 영상</button>
+											</Link>
+										</div>
+									)
+								}
 						</div>
 					</div>
 
