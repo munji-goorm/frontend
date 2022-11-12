@@ -31,7 +31,7 @@ export const GetLocation = () => {
 					onSuccess, onError, {
 					enableHighAccuracy: false,
 					maximumAge: 1000 * 3600 * 24, //24h
-					timeout: 3000, //3sec
+					timeout: 5000, //5sec
 				}
 				)
 			} else {
