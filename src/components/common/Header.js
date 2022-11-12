@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import AppIcon from '../../assets/images/goodMunji.png';
 import { ReactComponent as LocationIcon } from '../../assets/icons/location.svg';
 import { ReactComponent as DropDownArrowIcon } from '../../assets/icons/dropDownArrow.svg';
@@ -10,12 +10,15 @@ export default function Header() {
 	const [searchBtn, setSearchBtn] = useState(true);
 	const header = useRef();
 	
+	const location = useLocation();
+	console.log(location.pathname);
+
 	let coord = GetLocation();
 	//console.log(coord);
 
 	let addr = Coord2address(coord);
 	//console.log(addr);
-	
+
 	useEffect(() => {
 		// 이벤트 핸들러 함수
 		const handler = (e) => {
@@ -39,15 +42,14 @@ export default function Header() {
 			{searchBtn
 				?
 				<div className='w-full h-[4rem]'>
-					<div className='fixed z-10 flex flex-col h-[4rem] w-full items-center justify-center bg-white outline outline-1 outline-[#cccccc]'>
+					<div className='fixed z-10 flex flex-col h-[4rem] w-full justify-center items-center bg-white outline outline-1 outline-[#cccccc]'>
 						<div className='flex flex-row w-[63rem] h-[3rem]items-center justify-between'>
-							<div className='flex flex-row items-center'>
-								<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-								<Link to='/'>
+							<Link to='/'>
+								<div className='flex flex-row items-center'>
+									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
 									<span className='font-Kyobo px-2 text-2xl text-[#272727]'>먼지구름</span>
-								</Link>
-							</div>
-
+								</div>
+							</Link>
 							<div className='ml-[11rem] flex items-center'>
 								<button onClick={() => {
 									window.location.reload();
@@ -55,7 +57,7 @@ export default function Header() {
 									<LocationIcon className='inline w-6' />
 								</button>
 								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{addr}</div>
-									
+
 								<button onClick={() => {
 									setSearchBtn(!searchBtn)
 								}} className="searchBtn">
@@ -63,20 +65,54 @@ export default function Header() {
 								</button>
 							</div>
 
-							<div className='flex flex-row items-center'>
-								<Link to="/">
-									<button
-										className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'
-										onClick={(e) => { }}
-									>대기오염 현황</button>
-								</Link>
-								<Link to="/map">
-									<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
-								</Link>
-								<Link to="/livecam">
-									<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
-								</Link>
-							</div>
+							{
+									location.pathname === '/'
+									? <div className='flex flex-row items-center'>
+									<Link to="/">
+										<button
+											className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'
+											onClick={(e) => { }}
+										>대기오염 현황</button>
+									</Link>
+									<Link to="/map">
+										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
+									</Link>
+									<Link to="/livecam">
+										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
+									</Link>
+								</div>
+									: ( location.pathname === '/map'
+											? <div className='flex flex-row items-center'>
+											<Link to="/">
+												<button
+													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
+													onClick={(e) => { }}
+												>대기오염 현황</button>
+											</Link>
+											<Link to="/map">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>지도로 보기</button>
+											</Link>
+											<Link to="/livecam">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
+											</Link>
+										</div>
+											: <div className='flex flex-row items-center'>
+											<Link to="/">
+												<button
+													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
+													onClick={(e) => { }}
+												>대기오염 현황</button>
+											</Link>
+											<Link to="/map">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
+											</Link>
+											<Link to="/livecam">
+												<button className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>실시간 영상</button>
+											</Link>
+										</div>
+									)
+								}
+							
 						</div>
 					</div>
 				</div>
@@ -85,12 +121,12 @@ export default function Header() {
 				<div ref={header} className='w-full h-[4rem]'>
 					<div className='fixed z-10 flex flex-col h-[4rem] w-full items-center justify-center bg-white outline outline-1 outline-[#cccccc]'>
 						<div className='flex flex-row w-[63rem] h-[3rem]items-center justify-between'>
-							<div className='flex flex-row items-center'>
-								<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-								<Link to='/'>
+							<Link to='/'>
+								<div className='flex flex-row items-center'>
+									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
 									<span className='font-Kyobo px-2 text-2xl text-[#272727]'>먼지구름</span>
-								</Link>
-							</div>
+								</div>
+							</Link>
 
 							<div className='ml-[11rem] flex items-center'>
 								<LocationIcon className='inline w-6' />
@@ -109,7 +145,9 @@ export default function Header() {
 										onClick={(e) => { }}
 									>대기오염 현황</button>
 								</Link>
-								<Link to="/map">
+								<Link to={{
+									pathname: "/map"
+								}}>
 									<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]' >지도로 보기</button>
 								</Link>
 								<Link to="/livecam">
