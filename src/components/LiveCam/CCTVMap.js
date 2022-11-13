@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { GetLocation } from '../../apis';
 
-
-export const MapContainer = () => {
+export const CCTVMap = () => {
 
 	const { kakao } = window;
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import { MapContainer } from '../components/OntheMap';
+import { CCTVMap } from '../components/LiveCam';
 
 
 export default function LiveCam() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			<div className='my-[2rem] flex justify-center'>
-				<MapContainer />
+				<CCTVMap/>
 			</div>
 
 			<div className='justify-center flex flex-col rounded-xl mb-[1rem] w-[63rem] h-fit text-xs text-[#838383]'>
