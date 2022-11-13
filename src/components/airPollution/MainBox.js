@@ -5,16 +5,33 @@ import { ReactComponent as Mask } from '../../assets/icons/mask.svg';
 import { ReactComponent as Outdoor } from '../../assets/icons/outdoorActivity.svg';
 import { ReactComponent as SensitiveGroup } from '../../assets/icons/sensitiveGroup.svg';
 import { ReactComponent as Airout } from '../../assets/icons/airout.svg';
-
 import { InstructionBox } from './InstructionBox';
 
 export const MainBox = () => {
 	/* 행동요령 */
+	const GoodInstruction = {
+		mask: "필요없음",
+		sensitiveGroup: "필요없음",
+		outdoor: "지장없음",
+		airOut: "지장없음",
+	}
+	const UsualInstruction = {
+		mask: "필요없음",
+		sensitiveGroup: "착용권고",
+		outdoor: "지장없음",
+		airOut: "지장없음",
+	}
+	const BadInstruction = {
+		mask: "필수",
+		sensitiveGroup: "착용권고",
+		outdoor: "가볍게만",
+		airOut: "최소한만",
+	}
 	const veryBadInstruction = {
 		mask: "필수",
 		sensitiveGroup: "착용권고",
 		outdoor: "자제",
-		airOut: "최소한만"
+		airOut: "최소한만",
 	}
 
 	const [CAIstate, setCAIstate] = useState({
@@ -24,8 +41,9 @@ export const MainBox = () => {
 	});
 
 	return (
-		<div className='flex items-center w-[63rem] h-[23rem] my-[0.5rem]'>
-			<div className='rounded-md w-full h-[23rem] bg-[#D5534D]'>
+		<div className='flex items-center w-[63rem] h-[23rem] my-[2rem]'>
+			<div className='relative rounded-md w-full h-[23rem] bg-[#D5534D]'>
+				<div className='w-[63rem] absolute top-4 px-[4rem] text-right text-sm text-[#ffffff]'>2022.11.06. 11:00 업데이트</div>
 				<div className='relative mainInfo'>
 					<div className='flex justify-center py-10'>
 						<div className='px-3'>{CAIstate.icon}</div>
