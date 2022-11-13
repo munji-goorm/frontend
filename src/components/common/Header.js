@@ -42,7 +42,7 @@ export default function Header() {
 			{searchBtn
 				?
 				<div className='w-full h-[4rem]'>
-					<div className='fixed z-10 flex flex-col h-[4rem] w-full justify-center items-center bg-white outline outline-1 outline-[#cccccc]'>
+					<div className='fixed z-30 flex flex-col h-[4rem] w-full justify-center items-center bg-white outline outline-1 outline-[#cccccc]'>
 						<div className='flex flex-row w-[63rem] h-[3rem]items-center justify-between'>
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
@@ -117,7 +117,7 @@ export default function Header() {
 
 				:
 				<div ref={header} className='w-full h-[4rem]'>
-					<div className='fixed z-10 flex flex-col h-[4rem] w-full items-center justify-center bg-white outline outline-1 outline-[#cccccc]'>
+					<div className='fixed z-30 flex flex-col h-[4rem] w-full items-center justify-center bg-white outline outline-1 outline-[#cccccc]'>
 						<div className='flex flex-row w-[63rem] h-[3rem]items-center justify-between'>
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
