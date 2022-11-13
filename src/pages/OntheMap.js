@@ -1,55 +1,62 @@
-import React, { useRef, useState } from 'react'
-import { InfoBox, MapContainer } from '../components/OntheMap';
+import React, { useEffect, useRef, useState } from 'react'
+import { InfoBox, StationMap } from '../components/OntheMap';
 
 export default function Map() {
 	const [currentBtn, setCurrentBtn] = useState("CAI");
 	let pollutantBtn = useRef();
 
-	
+	const onClickBtn = (e) => {
+		let pollutantName = e.target.innerHTML;
+		if (e.target.innerHTML == "PM2.5") {
+			pollutantName = "PM25"
+		}
+		setCurrentBtn(pollutantName);
+		let parents = pollutantBtn.current;
+		for (const child of parents.children) {
+			child.classList.remove("text-[#ffffff]");
+			child.classList.remove("bg-[#272727]");
+			child.classList.add("text-[#838383]")
+		}
+		e.target.classList.add("text-[#ffffff]");
+		e.target.classList.add("bg-[#272727]");
+	}
+
 	return (
 		<div className='flex flex-col items-center'>
 			<div className='relative my-[2rem] flex justify-center'>
-				<MapContainer />
-				<div ref={pollutantBtn} className='z-10 right-[1rem] top-[1rem] rounded-lg absolute w-[4rem] h-fit bg-[#ffffff] drop-shadow-lg text-[#272727]'>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#ffffff] bg-[#272727] z-20 py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("CAI")}>
-						<div>
-							CAI
-						</div>
+				<StationMap />
+				<div ref={pollutantBtn} className='z-10 right-[1rem] top-[1rem] rounded-lg absolute flex flex-col w-[5rem] h-fit bg-[#ffffff] drop-shadow-lg text-[#272727]'>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#ffffff] bg-[#272727] z-20 py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
+						CAI
 					</button>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("PM10")}
-					>
-						PM<span className='text-xs'>10</span>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
+						PM10
 					</button>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("PM25")}
-					>
-						PM<span className='text-xs'>2.5</span>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
+						PM2.5
 					</button>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("SO2")}
-					>
-						SO<span className='text-xs'>2</span>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
+						SO2
 					</button>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("NO2")}
-					>
-						NO<span className='text-xs'>2</span>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
+						NO2
 					</button>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] z-20 text-[#838383] py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("CO")}
-					>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] z-20 text-[#838383] py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
 						CO
 					</button>
-					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[4rem] rounded-md h-1/7'
-					onClick={() => setCurrentBtn("O3")}
-					>
-						O<span className='text-xs'>3</span>
+					<button className='hover:text-[#ffffff] hover:bg-[#272727] text-[#838383] z-20 py-0.5 w-[5rem] rounded-md h-1/7'
+						onClick={onClickBtn}>
+						O3
 					</button>
 				</div>
 			</div>
-			<InfoBox name='CAI' />
+			<InfoBox name={currentBtn} />
 		</div>
 	)
 }

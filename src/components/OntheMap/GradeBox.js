@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 export const GradeBox = ({ name }) => {
 
 	const [gradeVal, setGradeVal] = useState({
-		goodVal: "",
-		usualVal: '',
-		badVal: '',
-		veryBadVal: '',
+		goodVal: "~50",
+		usualVal: "~100",
+		badVal: "~250",
+		veryBadVal: "251~"
 	});
 
 	useEffect(() => {
@@ -60,7 +60,7 @@ export const GradeBox = ({ name }) => {
 				veryBadVal: "0.151~"
 			})
 		} 
-	}, []);
+	}, [name]);
 
 
 	return (

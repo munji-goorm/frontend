@@ -35,26 +35,24 @@ export const InfoBox = ({name}) => {
 				name: "이산화질소",
 				content: "이산화질소는 공업 연소 및 화학물질 공정 등에서 발생하는 질소화합물성 대기오염 물질로, 고농도 노출 시 점막과 기관지, 폐에 부정적 영향을 줄 수 있습니다.",
 			})
+		} else if (name == "CO") {
+			setInfo({
+				name: "일산화탄소",
+				content: "일산화탄소는 탄소성분이 불완전 연소 시 발생하는 유독성 가스로, 산업공정의 연소, 주방 및 담배연기 등에서 발생 가능합니다. 신체 내 산소운반 기능을 저하시켜 치명적일 수 있습니다.",
+			})
 		} else if (name == "O3") {
 			setInfo({
 				name: "오존",
 				content: "오존은 산소원자 3개로 이뤄진 기체입니다. 자연계에서 지구 대기권 성층권에 있을 때는 자외선을 흡수해 지구 생명체가 해로운 자외선이 직접 닿는 것을 막아주는 고마운 역할을 합니다. 다만, 오존이 지표면에 있을 때는 우리에게 부정적인 영향을 줄 수 있습니다. 지표면의 오존은 대기 중 배출된 질소산화물(NOx)와 휘발성 유기화합물이 자외선과 광화학 반응해 생성된 2차 오염물질 입니다. 다량 반복 노출 시 기관지와 호흡기, 폐에 부정적 영향을 줄 수 있습니다. 우리가 흔히 알고 있는 스모가(smog)가 주로 이 오존에 의해 형성되는 것입니다.",
 			})
-		} else if (name == "PM10") {
-			setInfo({
-				name: "",
-				content: "",
-			})
-		}
-
-		
-	}, []);
+		}		
+	}, [name]);
 
 
 	return (
 		<div className='flex flex-col rounded-xl w-[63rem] h-fit bg-[#ffffff] text-[#272727]'>
 			<div className='mx-5 mt-5 text-lg font-semibold'>{info.name}</div>
-			<div className='mx-5 mt-3 mb-3'><GradeBox name="CAI" /></div>
+			<div className='mx-5 mt-3 mb-3'><GradeBox name={name} /></div>
 			<div className='m-5'>
 				<img className="float-left w-20 mr-5" alt="appIcon" src={AppIcon}></img>
 				<p className='text-[#555555] leading-7'>{info.content}</p>
