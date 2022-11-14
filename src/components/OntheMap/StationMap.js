@@ -4,7 +4,7 @@ import { GetLocation, GetStationInfo } from '../../apis';
 export const StationMap = ({ name }) => {
 	const { kakao } = window;
 	let coord = GetLocation();
-	// console.log(coord);
+	//console.log(coord);
 
 	const stationData = GetStationInfo();
 	//console.log(stationData);
@@ -28,42 +28,42 @@ export const StationMap = ({ name }) => {
 
 		// 마커를 표시할 위치와 title 객체 배열입니다.
 		for (let i = 0; i < stationData.length; i++) {
-			if (name == "CAI") {
+			if (name === "CAI") {
 				grade = stationData[i].khaiState;
 				val = stationData[i].khaiValue;
-			} else if (name == "PM10"){
+			} else if (name === "PM10"){
 				grade = stationData[i].pm10State;
 				val = stationData[i].pm10Value;
-			} else if (name == "PM25"){
+			} else if (name === "PM25"){
 				grade = stationData[i].pm25State;
 				val = stationData[i].pm25Value;
-			} else if (name == "SO2"){
+			} else if (name === "SO2"){
 				grade = stationData[i].so2State;
 				val = stationData[i].so2Value;
-			} else if (name == "NO2"){
+			} else if (name === "NO2"){
 				grade = stationData[i].no2State;
 				val = stationData[i].no2Value;
-			} else if (name == "CO"){
+			} else if (name === "CO"){
 				grade = stationData[i].coState;
 				val = stationData[i].coValue;
-			} else if (name == "O3"){
+			} else if (name === "O3"){
 				grade = stationData[i].o3State;
 				val = stationData[i].o3Value;
 			} 
 
 			let imageSrc;
-			if (grade == "좋음") {
+			if (grade === "좋음") {
 				imageSrc = process.env.PUBLIC_URL + '/images/markerblue.png';
-			} else if (grade == "보통") {
+			} else if (grade === "보통") {
 				imageSrc = process.env.PUBLIC_URL + '/images/markerGreen.png';
-			} else if (grade == "나쁨") {
+			} else if (grade === "나쁨") {
 				imageSrc = process.env.PUBLIC_URL + '/images/markerOrange.png';
-			} else if (grade == "최악"){
+			} else if (grade === "최악"){
 				imageSrc = process.env.PUBLIC_URL + '/images/markerRed.png';
 			} else { //점검중
 				imageSrc = process.env.PUBLIC_URL + '/images/markerGray.png';
 			}
-			if (val == -1) {
+			if (val === -1) {
 				val = "점검중";
 			}
 
