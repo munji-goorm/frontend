@@ -15,8 +15,9 @@ export default function Map() {
 		for (const child of parents.children) {
 			child.classList.remove("text-[#ffffff]");
 			child.classList.remove("bg-[#272727]");
-			child.classList.add("text-[#838383]")
+			child.classList.add("text-[#838383]");
 		}
+		e.target.classList.remove("text-[#838383]");
 		e.target.classList.add("text-[#ffffff]");
 		e.target.classList.add("bg-[#272727]");
 	}
