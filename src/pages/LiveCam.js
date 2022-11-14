@@ -1,12 +1,12 @@
 import React from 'react';
 import { CCTVMap } from '../components/LiveCam';
 
-
 export default function LiveCam() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
-			<div className='my-[2rem] flex justify-center'>
+			<div className='relative my-[2rem] flex-col items-center flex justify-center'>
 				<CCTVMap/>
+				<div className='absolute z-20 w-[4rem] text-center text-[#ffffff] bg-[#272727] h-[2rem] py-1 right-[1rem] top-[1rem] rounded-md drop-shadow-lg'>CCTV</div>
 			</div>
 
 			<div className='justify-center flex flex-col rounded-xl mb-[1rem] w-[63rem] h-fit text-xs text-[#838383]'>
@@ -25,7 +25,7 @@ export default function LiveCam() {
 			</div>
 
 			<div className='mt-[1rem] w-[63rem] flex flex-col h-fit'>
-				<div className='text-lg font-bold text-[#272727]'>Live Camera</div>
+				<div className='text-lg font-bold text-[#272727]'>On Air</div>
 			</div>
 			<div className='flex mt-[1rem] mb-[0.4rem] justify-between w-[63rem] h-fit items-center text-[#272727] font-medium text-base'>
 				<div className='w-[19rem]'>서울</div>
@@ -34,7 +34,6 @@ export default function LiveCam() {
 			</div>
 
 			<div className='w-[63rem] h-[10.55rem] flex justify-between'>
-				
 					<iframe src="https://www.youtube.com/embed/-JhoMGoAfFc?&autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
 					<iframe src="https://www.youtube.com/embed/VOvSvsZXZwg?&autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
 					<iframe src="https://www.youtube.com/embed/oEXCjWsksA8?&autoplay=1&mute=1" title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
