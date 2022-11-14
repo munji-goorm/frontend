@@ -5,7 +5,7 @@ export const Coord2address = (coord) => {
 	// 위도, 경도를 kakaoMap API를 통해 주소로 변환합니다.
 	const API_KEY = process.env.REACT_APP_KAKAOMAP_API_KEY_REST;
 	
-	const [addr, setAddr] = useState("종로구 궁정동");
+	const [addr, setAddr] = useState("중구 서소문동");
 	
 	const url = "https://dapi.kakao.com/v2/local/geo/coord2address.json";
 

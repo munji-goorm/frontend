@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 export const GetLocation = () => {
 	let lat, lng;
 	const [location, setLocation] = useState({
-		lat: 37.584009, //서울시 중구 소공동 위도
-		lng: 126.970626, //서울시 중구 소공동 경도
+		lat: 37.564639, //서울시 중구 측정소 위도
+		lng: 126.975961, //서울시 중구 측정소 경도
 	});
 
 	const onSuccess = (location) => {
