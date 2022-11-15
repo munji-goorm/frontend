@@ -24,13 +24,14 @@ export default function LiveCam() {
 				</span>
 			</div>
 
-			<div className='mt-[1rem] w-[63rem] flex flex-col h-fit'>
+			<div className='mt-[1rem] w-[63rem] flex flex-row h-fit items-center'>
 				<div className='text-lg font-bold text-[#272727]'>On Air</div>
+				<div className='ml-[0.5rem] w-[0.5rem] mb-[0.4rem] bg-[#E03123] h-[0.5rem]' style={{borderRadius: "50%"}}></div>
 			</div>
 			<div className='flex mt-[1rem] mb-[0.4rem] justify-between w-[63rem] h-fit items-center text-[#272727] font-medium text-base'>
-				<div className='w-[19rem]'>서울</div>
-				<div className='w-[19rem]'>부산</div>
-				<div className='w-[19rem]'>제주</div>
+				<div className='w-[19rem]'>서울 반포대교</div>
+				<div className='w-[19rem]'>부산 광안대교</div>
+				<div className='w-[19rem]'>제주 협재바다</div>
 			</div>
 
 			<div className='w-[63rem] h-[10.55rem] flex justify-between'>
