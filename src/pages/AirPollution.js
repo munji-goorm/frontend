@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { DailyForecastBox, HitmapBox, MainBox, PollutantBox, WholeAirInfoBox } from '../components/AirPollution';
 import { PM10Box } from '../components/AirPollution/PM10Box';
+import { GetLocation, Coord2TM, GetMainData } from '../apis';
 
 export default function AirPollution() {
+	let coord = GetLocation();
+	let tm = Coord2TM(coord);
+	let stationData = GetMainData(tm.tmX, tm.tmY);
+	let stationInfo = stationData.stationInfo;
+	let grade = stationInfo.khaiState;
+	let dateTime = stationInfo.dateTime;
+	let forecast = stationData.forecast;
+	let nationwide = stationData.nationwide;
 
 	return (
 		<div className='flex flex-col items-center w-full'>
-			<MainBox />
+			<MainBox grade={grade} dateTime={dateTime}/>
 			<div className='w-[63rem] flex flex-row justify-between'>
-				<DailyForecastBox />
-				<WholeAirInfoBox />
+				<DailyForecastBox forecast={forecast}/>
+				<WholeAirInfoBox nationwide={nationwide}/>
 			</div>
 			<PM10Box/>
 			<div className='w-[63rem] flex flex-row justify-between'>
