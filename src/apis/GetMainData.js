@@ -54,7 +54,7 @@ export const GetMainData = (tmX, tmY) => {
 			}
 		}
 		getPollutantData();
-	}, [tmX, tmY]);
+	}, [tmX, tmY, stationName]);
 
 	return pollutantData
 }
