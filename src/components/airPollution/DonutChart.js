@@ -33,7 +33,7 @@ export const DonutChart = ({ pollutant, grade, value, name, color }) => {
 			tmp = Math.min(value/0.151 * 100, 100);
 			setReveal(tmp);
 		}     
-	}, [value]);
+	}, [value, pollutant]);
 
 	return (
 		<div className='relative flex flex-col mx-10 w-44'>
