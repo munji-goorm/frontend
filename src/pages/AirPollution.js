@@ -8,19 +8,18 @@ export default function AirPollution() {
 	let tm = Coord2TM(coord);
 	let stationData = GetMainData(tm.tmX, tm.tmY);
 	let stationInfo = stationData.stationInfo;
-	//console.log(stationData);
-	console.log(stationInfo);
 	let grade = stationInfo.khaiState;
 	let dateTime = stationInfo.dateTime;
 	let forecast = stationData.forecast;
-	let nationwide = stationData.nationwide;
+	let nationwideGrade = stationData.nationwide;
+	let nationwideValue = stationData.nationwideValue;
 
 	return (
 		<div className='flex flex-col items-center w-full'>
 			<MainBox grade={grade} dateTime={dateTime}/>
 			<div className='w-[63rem] flex flex-row justify-between'>
 				<DailyForecastBox forecast={forecast}/>
-				<WholeAirInfoBox nationwide={nationwide}/>
+				<WholeAirInfoBox gradeList={nationwideGrade} valueList={nationwideValue}/>
 			</div>
 			<PM10Box stationInfo={stationInfo}/>
 			<div className='w-[63rem] flex flex-row justify-between'>

@@ -15,6 +15,8 @@ export const GetMainData = (tmX, tmY) => {
 		nationwide: {
 		},
 		stationInfo: {
+		},
+		nationwideValue: {
 		}
 	});
 
