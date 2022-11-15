@@ -4,10 +4,10 @@ import { ReactComponent as InfoIcon } from '../../assets/icons/info.svg';
 
 export const PM10Box = ({stationInfo}) => {
 	console.log(stationInfo);
-	let pm10Value = stationInfo.pm10Value;
+	let pm10Value = Math.max(stationInfo.pm10Value, 0);
 	let pm10StateK = stationInfo.pm10StateK;
 	let pm10StateW = stationInfo.pm10StateW;
-	let pm25Value = stationInfo.pm25Value;
+	let pm25Value = Math.max(stationInfo.pm25Value, 0);
 	let pm25StateK = stationInfo.pm25StateK;
 	let pm25StateW = stationInfo.pm25StateW;
 	let color;

@@ -2,15 +2,16 @@ import React from 'react';
 import { DonutChart } from './DonutChart';
 
 export const PollutantBox = ({stationInfo}) => {
-	let CAIValue = stationInfo.khaiValue;
+	console.log(stationInfo);
+	let CAIValue = Math.max(stationInfo.khaiValue, 0);
 	let CAIState = stationInfo.khaiState;
-	let so2Value = stationInfo.so2Value;
+	let so2Value = Math.max(stationInfo.so2Value, 0);
 	let so2State = stationInfo.so2State;
-	let no2Value = stationInfo.no2Value;
+	let no2Value = Math.max(stationInfo.no2Value, 0);
 	let no2State = stationInfo.no2State;
-	let coValue = stationInfo.coValue;
+	let coValue = Math.max(stationInfo.coValue, 0);
 	let coState = stationInfo.coState;
-	let o3Value = stationInfo.o3Value;
+	let o3Value = Math.max(stationInfo.o3Value, 0);
 	let o3State = stationInfo.o3State;
 	let color;
 	const setColor = (state) => {
