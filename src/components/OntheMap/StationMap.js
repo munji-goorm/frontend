@@ -26,7 +26,6 @@ export const StationMap = ({ name }) => {
 		map.setCenter(moveLatLon);
 
 
-		// 마커를 표시할 위치와 title 객체 배열입니다.
 		for (let i = 0; i < stationData.length; i++) {
 			if (name === "CAI") {
 				grade = stationData[i].khaiState;

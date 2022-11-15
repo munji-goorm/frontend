@@ -23,7 +23,7 @@ export const WholeAirInfoBox = ({gradeList, valueList}) => {
 		<div className='relative w-[30.5rem] h-[30.5rem] bg-[#ffffff] rounded-md mb-[0.5rem]'>
 			<div className='pt-5 px-5 text-lg font-bold text-[#272727]'>전국 대기 정보</div>
 			<div className='flex justify-center'>
-				<img className='w-[17rem]' src={Map} />
+				<img alt="map" className='w-[17rem]' src={Map} />
 			</div>
 			<div className='absolute w-12 h-12 left-[10rem] bottom-[21.9rem]'>
 				<RegionAirBtn region="서울" value={valueList["서울"]} color={setColor(gradeList["서울"])} />

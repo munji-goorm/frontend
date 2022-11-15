@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { DailyForecastBox, HitmapBox, MainBox, PollutantBox, WholeAirInfoBox } from '../components/AirPollution';
 import { PM10Box } from '../components/AirPollution/PM10Box';
 import { GetLocation, Coord2TM, GetMainData } from '../apis';
