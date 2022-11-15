@@ -56,7 +56,7 @@ export const WholeAirInfoBox = ({gradeList, valueList}) => {
 				<RegionAirBtn region="대전" value={valueList["대전"]} color={setColor(gradeList["대전"])} />
 			</div>
 			<div className='absolute w-12 h-12 left-[16.5rem] bottom-[12rem]'>
-				<RegionAirBtn region="대구" value={valueList["대전"]} color={setColor(gradeList["대전"])} />
+				<RegionAirBtn region="대구" value={valueList["대구"]} color={setColor(gradeList["대구"])} />
 			</div>
 			<div className='absolute w-12 h-12 left-[10rem] bottom-[11rem]'>
 				<RegionAirBtn region="전북" value={valueList["전북"]} color={setColor(gradeList["전북"])} />
