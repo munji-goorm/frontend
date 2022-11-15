@@ -78,6 +78,7 @@ export const CCTVMap = () => {
 			// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 			kakao.maps.event.addListener(marker, 'click', function () {
 				overlay.setMap(map);
+				map.setCenter(marker.getPosition()); // cctv 마커 클릭 시 마커 위치로 중심좌표 이동
 			});
 
 			// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
