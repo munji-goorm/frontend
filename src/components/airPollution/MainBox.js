@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Good from '../../assets/images/goodMunji.png';
 import Usual from '../../assets/images/usualMunji.png';
 import Bad from '../../assets/images/badMunji.png';
@@ -10,7 +10,6 @@ import { ReactComponent as Outdoor } from '../../assets/icons/outdoorActivity.sv
 import { ReactComponent as SensitiveGroup } from '../../assets/icons/sensitiveGroup.svg';
 import { ReactComponent as Airout } from '../../assets/icons/airout.svg';
 import { InstructionBox } from './InstructionBox';
-import { GetLocation, Coord2TM, GetMainData } from '../../apis';
 
 export const MainBox = ({grade, dateTime}) => {
 	let color;
@@ -53,28 +52,27 @@ export const MainBox = ({grade, dateTime}) => {
 	if (grade == "좋음") {
 		color = "#549FF8";
 		msg = "오늘은 공기가 좋아요 ><";
-		icon = <img className="inline w-24" alt="icon" src={Good}></img>
+		icon = <img className="inline w-28" alt="icon" src={Good}></img>
 		instructions = GoodInstruction;
 	} else if (grade == "보통") {
 		color = "#5AC451";
 		msg = "무난한 날입니다~~~!"
-		icon = <img className="inline w-24" alt="icon" src={Usual}></img>
+		icon = <img className="inline w-28" alt="icon" src={Usual}></img>
 		instructions = UsualInstruction;
 	} else if (grade == "나쁨") {
 		color = "#F1AA3E"
 		msg = "대기질이 좋지않아요.."
-		icon = <img className="inline w-24" alt="icon" src={Bad}></img>
+		icon = <img className="inline w-28" alt="icon" src={Bad}></img>
 		instructions = BadInstruction;
 	} else if (grade == "최악") {
-		grade = "매우 나쁨";
 		color = "#D5534D";
 		msg = "오늘은 외출을 삼가세요!";
-		icon = <img className="inline w-24" alt="icon" src={VeryBad}></img>
+		icon = <img className="inline w-28" alt="icon" src={VeryBad}></img>
 		instructions = veryBadInstruction;
 	} else { //점검중
 		color = "#838383";
 		msg = "기기를 점검중입니다..🛠"
-		icon = <img className="inline w-24" alt="icon" src={Undefined}></img>
+		icon = <img className="inline w-28" alt="icon" src={Undefined}></img>
 		instructions = fixInstruction;
 	}
 
@@ -82,10 +80,10 @@ export const MainBox = ({grade, dateTime}) => {
 		<div className='flex items-center w-[63rem] h-[23rem] my-[2rem]'>
 			<div className='relative rounded-md w-full h-[23rem]' style={{ backgroundColor: `${color}`}}>
 				<div className='w-[63rem] absolute top-4 px-[4rem] text-right text-sm text-[#ffffff]'>{dateTime} 업데이트</div>
-				<div className='relative mainInfo'>
-					<div className='flex justify-center py-10'>
-						<div className='px-3'>{icon}</div>
-						<div className='px-6 py-6 font-Kyobo text-5xl text-center text-[#ffffff]'>{grade}</div>
+				<div className='relative'>
+					<div className='flex items-center justify-center py-8'>
+						{icon}
+						<div className='px-6 py-6 font-Kyobo text-[60px] text-center text-[#ffffff]'>{grade}</div>
 					</div>
 					<div className='justify-center speechBubble'>
 						<div className='relative flex justify-center bottom-10'>
@@ -96,7 +94,7 @@ export const MainBox = ({grade, dateTime}) => {
 						</div>
 					</div>
 				</div>
-				<div className='flex justify-center my-4 instructions'>
+				<div className='flex justify-center my-2 instructions'>
 					<InstructionBox icon={<Mask />} title="마스크" msg={instructions.mask} />
 					<InstructionBox icon={<SensitiveGroup />} title="민감군" msg={instructions.sensitiveGroup} />
 					<InstructionBox icon={<Outdoor />} title="야외활동" msg={instructions.outdoor} />
