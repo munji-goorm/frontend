@@ -2,13 +2,35 @@ import React, { useState } from 'react';
 import { DonutChart } from './DonutChart';
 import { ReactComponent as InfoIcon } from '../../assets/icons/info.svg';
 
-export const PM10Box = () => {
+export const PM10Box = ({stationInfo}) => {
+	console.log(stationInfo);
+	let pm10Value = stationInfo.pm10Value;
+	let pm10StateK = stationInfo.pm10StateK;
+	let pm10StateW = stationInfo.pm10StateW;
+	let pm25Value = stationInfo.pm25Value;
+	let pm25StateK = stationInfo.pm25StateK;
+	let pm25StateW = stationInfo.pm25StateW;
+	let color;
+	const setColor = (state) => {
+		if (state === "좋음") {
+			color = "#549FF8";
+		} else if (state === "보통") {
+			color = "#5AC451";
+		} else if (state === "나쁨") {
+			color = "#F1AA3E";
+		} else if (state === "최악") {
+			color = "#D5534D";
+		} else { //모름
+			color = "#838383";
+		}
+		return color
+	}
 	const [isHoveringKor, setIsHoveringKor] = useState(false);
 	const [isHoveringWHO, setIsHoveringWHO] = useState(false);
 
 	return (
 		<div className='w-[63rem] h-[23rem] text-[#272727] bg-[#ffffff] rounded-md my-[0.5rem]'>
-			<div className='px-5 mt-5 mb-4 text-lg font-bold '>미세먼지</div>
+			<div className='px-5 mt-5 mb-4 text-lg font-bold'>미세먼지</div>
 			<div className='flex justify-between'>
 				<div className='flex items-center mx-5 mb-5 w-[28rem]'>
 					<div className='font-semibold'>
@@ -55,10 +77,10 @@ export const PM10Box = () => {
 				</div>
 			</div>
 			<div className='flex justify-center'>
-				<DonutChart grade="좋음" value="39" name="미세먼지" color="#549FF8" />
-				<DonutChart grade="보통" value="39" name="초미세먼지" color="#5AC451" />
-				<DonutChart grade="나쁨" value="39" name="미세먼지" color="#F1AA3E" />
-				<DonutChart grade="좋음" value="39" name="초미세먼지" color="#549FF8" />
+				<DonutChart pollutant="pm10K" grade={pm10StateK} value={pm10Value} name="미세먼지" color={setColor(pm10StateK)} />
+				<DonutChart pollutant="pm25K" grade={pm25StateK} value={pm25Value} name="초미세먼지" color={setColor(pm25StateK)} />
+				<DonutChart pollutant="pm10W" grade={pm10StateW} value={pm10Value} name="미세먼지" color={setColor(pm10StateW)} />
+				<DonutChart pollutant="pm25W" grade={pm25StateW} value={pm25Value} name="초미세먼지" color={setColor(pm25StateW)} />
 			</div>
 		</div>
 	)
