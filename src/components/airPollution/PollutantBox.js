@@ -29,7 +29,7 @@ export const PollutantBox = ({stationInfo}) => {
 	}
 
 	return (
-		<div className='w-[63rem] h-[23rem] bg-[#ffffff] rounded-md my-[0.5rem]'>
+		<div className='w-[63rem] h-[20rem] bg-[#ffffff] rounded-md my-[1.5rem]'>
 			<div className='p-5 pb-10 text-lg font-bold text-[#272727]'>오염 물질</div>
 			<div className='flex justify-center'>
 				<DonutChart pollutant="CAI" grade={CAIState} value={CAIValue} name="통합대기지수" color={setColor(CAIState)} />

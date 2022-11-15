@@ -29,7 +29,7 @@ export const PM10Box = ({stationInfo}) => {
 	const [isHoveringWHO, setIsHoveringWHO] = useState(false);
 
 	return (
-		<div className='w-[63rem] h-[23rem] text-[#272727] bg-[#ffffff] rounded-md my-[0.5rem]'>
+		<div className='w-[63rem] h-[23rem] text-[#272727] bg-[#ffffff] rounded-md my-[1.5rem]'>
 			<div className='px-5 mt-5 mb-4 text-lg font-bold'>미세먼지</div>
 			<div className='flex justify-between'>
 				<div className='flex items-center mx-5 mb-5 w-[28rem]'>
