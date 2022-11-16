@@ -10,49 +10,49 @@ export const GradeBox = ({ name }) => {
 	});
 
 	useEffect(() => {
-		if (name == "CAI") { //통합대기지수
+		if (name === "CAI") { //통합대기지수
 			setGradeVal({
 				goodVal: "~50",
 				usualVal: "~100",
 				badVal: "~250",
 				veryBadVal: "251~"
 			})
-		} else if (name == "PM10") { //미세먼지
+		} else if (name === "PM10") { //미세먼지
 			setGradeVal({
 				goodVal: "~30",
 				usualVal: "~50",
 				badVal: "~100",
 				veryBadVal: "101~"
 			})
-		} else if (name == "PM25") { //초미세먼지
+		} else if (name === "PM25") { //초미세먼지
 			setGradeVal({
 				goodVal: "~15",
 				usualVal: "~25",
 				badVal: "~50",
 				veryBadVal: "51~"
 			})
-		} else if (name == "SO2") { //아황산가스
+		} else if (name === "SO2") { //아황산가스
 			setGradeVal({
 				goodVal: "~0.020",
 				usualVal: "~0.050",
 				badVal: "~0.150",
 				veryBadVal: "0.151~"
 			})
-		} else if (name == "NO2") { //이산화질소
+		} else if (name === "NO2") { //이산화질소
 			setGradeVal({
 				goodVal: "~0.030",
 				usualVal: "~0.060",
 				badVal: "~0.200",
 				veryBadVal: "0.201~"
 			})
-		} else if (name == "CO") { //일산화탄소
+		} else if (name === "CO") { //일산화탄소
 			setGradeVal({
 				goodVal: "~2.00",
 				usualVal: "~9.00",
 				badVal: "~15.00",
 				veryBadVal: "15.01~"
 			})
-		} else if (name == "O3") { //오존
+		} else if (name === "O3") { //오존
 			setGradeVal({
 				goodVal: "~0.030",
 				usualVal: "~0.090",
