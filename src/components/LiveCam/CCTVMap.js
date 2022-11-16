@@ -4,10 +4,7 @@ import { GetCCTVInfo, GetLocation } from '../../apis';
 export const CCTVMap = () => {
 	const { kakao } = window;
 	let coord = GetLocation();
-	//console.log(coord);
-
 	const CCTVData = GetCCTVInfo();
-	//console.log(CCTVData);
 
 	let imageSrc = process.env.PUBLIC_URL + 'images/cctvMarker.png';
 	let imageSize = new kakao.maps.Size(15, 15);
