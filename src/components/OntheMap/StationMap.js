@@ -52,7 +52,7 @@ export const StationMap = ({ name }) => {
 
 			let imageSrc;
 			if (grade === "좋음") {
-				imageSrc = process.env.PUBLIC_URL + '/images/markerblue.png';
+				imageSrc = process.env.PUBLIC_URL + '/images/markerBlue.png';
 			} else if (grade === "보통") {
 				imageSrc = process.env.PUBLIC_URL + '/images/markerGreen.png';
 			} else if (grade === "나쁨") {
