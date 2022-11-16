@@ -9,13 +9,20 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path="/" element={<AirPollution />} />
-        <Route path="/map" element={<OntheMap />} />
-        <Route path="/livecam" element={<LiveCam/>}/>
+        <Route exact path="/" element={
+            <AirPollution />
+        } />
+        <Route path="/airmap" element={<OntheMap />} />
+        <Route path="/livecam" element={<LiveCam />} />
       </Routes>
       <Footer />
     </BrowserRouter>
   );
+}
+
+function TestContext() {
+  const value = useContext(Context);
+  return <div>Received: {value}</div>;
 }
 
 export default App;
