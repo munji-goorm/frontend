@@ -73,20 +73,20 @@ export default function Header() {
 										<button
 											className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>대기오염 현황</button>
 									</Link>
-									<Link to="/map">
+									<Link to="/airmap">
 										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
 									</Link>
 									<Link to="/livecam">
 										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
 									</Link>
 								</div>
-									: ( location.pathname === '/map'
+									: ( location.pathname === '/airmap'
 											? <div className='flex flex-row items-center'>
 											<Link to="/">
 												<button
 													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>대기오염 현황</button>
 											</Link>
-											<Link to="/map">
+											<Link to="/airmap">
 												<button className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>지도로 보기</button>
 											</Link>
 											<Link to="/livecam">
@@ -100,7 +100,7 @@ export default function Header() {
 													onClick={(e) => { }}
 												>대기오염 현황</button>
 											</Link>
-											<Link to="/map">
+											<Link to="/airmap">
 												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
 											</Link>
 											<Link to="/livecam">
@@ -142,14 +142,14 @@ export default function Header() {
 											onClick={(e) => { }}
 										>대기오염 현황</button>
 									</Link>
-									<Link to="/map">
+									<Link to="/airmap">
 										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
 									</Link>
 									<Link to="/livecam">
 										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
 									</Link>
 								</div>
-									: ( location.pathname === '/map'
+									: ( location.pathname === '/airmap'
 											? <div className='flex flex-row items-center'>
 											<Link to="/">
 												<button
@@ -157,7 +157,7 @@ export default function Header() {
 													onClick={(e) => { }}
 												>대기오염 현황</button>
 											</Link>
-											<Link to="/map">
+											<Link to="/airmap">
 												<button className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>지도로 보기</button>
 											</Link>
 											<Link to="/livecam">
@@ -171,7 +171,7 @@ export default function Header() {
 													onClick={(e) => { }}
 												>대기오염 현황</button>
 											</Link>
-											<Link to="/map">
+											<Link to="/airmap">
 												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
 											</Link>
 											<Link to="/livecam">
