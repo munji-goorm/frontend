@@ -29,7 +29,7 @@ export const GetStationInfo = () => {
 	useEffect(() => {
 		const getStationInfo = async () => {
 			try {
-				const res = await axios.get(url + endpoint);
+				const res = await axios.get(endpoint);
 				setStationData(res.data.data);
 			} catch (e) {
 				console.error(e.message);

@@ -19,7 +19,7 @@ export const SearchBox = ({addr, setAddr}) => {
 					setIsHaveInputValue(false);
 					setDropDownList([]);
 				} else {
-					const res = await axios.get(url + endpoint, {
+					const res = await axios.get(endpoint, {
 						params: {
 							keyword: inputValue
 						}
