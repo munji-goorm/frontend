@@ -15,7 +15,7 @@ export const GetCCTVInfo = () => {
 	useEffect(() => {
 		const getData = async () => {
 			try {
-				const res = await axios.get(url + endpoint);
+				const res = await axios.get(endpoint);
 				//console.log(res.data.data);
 				setCCTVData(res.data.data);
 			} catch (e) {
