@@ -7,7 +7,6 @@ import Undefined from '../../assets/images/undefinedMunji.png';
 
 export const DailyForecastBox = ({forecast}) => {
 	let date = Object.keys(forecast);
-	console.log(forecast);
 	let color;
 	let icon;
 	const setColor = (state) => {
@@ -38,24 +37,6 @@ export const DailyForecastBox = ({forecast}) => {
 		}
 		return icon
 	}
-	// for (let i = 0; i < date.length; i++) {
-	// 	if (forecast[date[i]] === "좋음") {
-	// 		color[i] = "#549FF8";
-	// 		icon[i] = Good;
-	// 	} else if (forecast[date[i]] === "보통") {
-	// 		color[i] = "#5AC451";
-	// 		icon[i] = Usual;
-	// 	} else if (forecast[date[i]] === "나쁨") {
-	// 		color[i] = "#F1AA3E";
-	// 		icon[i] = Bad;
-	// 	} else if (forecast[date[i]] === "최악") {
-	// 		color[i] = "#D5534D";
-	// 		icon[i] = VeryBad;
-	// 	} else { //모름
-	// 		color[i] = "#838383";
-	// 		icon[i] = Undefined;
-	// 	}
-	// }
 
 	return (
 		<div className='flex flex-col items-center w-[30.5rem] h-[30.5rem] bg-[#ffffff] rounded-md mb-[0.5rem]'>

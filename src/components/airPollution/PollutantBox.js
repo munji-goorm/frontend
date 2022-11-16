@@ -2,7 +2,6 @@ import React from 'react';
 import { DonutChart } from './DonutChart';
 
 export const PollutantBox = ({stationInfo}) => {
-	console.log(stationInfo);
 	let CAIValue = Math.max(stationInfo.khaiValue, 0);
 	let CAIState = stationInfo.khaiState;
 	let so2Value = Math.max(stationInfo.so2Value, 0);

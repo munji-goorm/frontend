@@ -3,7 +3,6 @@ import { DonutChart } from './DonutChart';
 import { ReactComponent as InfoIcon } from '../../assets/icons/info.svg';
 
 export const PM10Box = ({stationInfo}) => {
-	console.log(stationInfo);
 	let pm10Value = Math.max(stationInfo.pm10Value, 0);
 	let pm10StateK = stationInfo.pm10StateK;
 	let pm10StateW = stationInfo.pm10StateW;
