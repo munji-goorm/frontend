@@ -20,9 +20,4 @@ function App() {
   );
 }
 
-function TestContext() {
-  const value = useContext(Context);
-  return <div>Received: {value}</div>;
-}
-
 export default App;
