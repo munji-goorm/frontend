@@ -8,7 +8,7 @@ export const SearchBox = ({addr, setAddr}) => {
 	const [isHaveInputValue, setIsHaveInputValue] = useState(false);
 	const [dropDownList, setDropDownList] = useState([]);
 	const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
-	const [shortAddr, setShorAddr] = useState(addr);
+	const [shortAddr, setShortAddr] = useState(addr);
 
 	useEffect(() => {
 		const showDropDownList = async () => {
