@@ -42,7 +42,7 @@ export const GetMainData = (tmX, tmY) => {
 		// 측정소 이름과 주소를 Backend로 전달하고 data를 가져옵니다.
 		const getPollutantData = async () => {
 			try {
-				const res = await axios.get(url + endpoint, {
+				const res = await axios.get(endpoint, {
 					params: {
 						stationName: encodeURI(stationName),
 						addr: encodeURI(stationAddr),

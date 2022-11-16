@@ -48,7 +48,7 @@ export const MainBox = ({grade, dateTime}) => {
 		outdoor: "-",
 		airOut: "-",
 	}
-	
+
 	if (grade === "좋음") {
 		color = "#549FF8";
 		msg = "오늘은 공기가 좋아요 ><";
