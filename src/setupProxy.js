@@ -21,4 +21,11 @@ module.exports = function (app) {
 			changeOrigin: true,
 		})
 	);
+	app.use(
+		'/cctv',
+		createProxyMiddleware({
+			target: 'http://munji-back:8080',
+			changeOrigin: true,
+		})
+	);
 }
