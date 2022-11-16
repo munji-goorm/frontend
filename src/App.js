@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<AirPollution />} />
-        <Route path="/map" element={<OntheMap />} />
+        <Route path="/airmap" element={<OntheMap />} />
         <Route path="/livecam" element={<LiveCam/>}/>
       </Routes>
       <Footer />
