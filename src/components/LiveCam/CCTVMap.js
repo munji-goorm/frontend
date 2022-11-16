@@ -13,7 +13,7 @@ export const CCTVMap = () => {
 		const container = document.getElementById('kakaoMap'); // 지도를 표시할 div
 		const options = {
 			center: new kakao.maps.LatLng(37.584009, 126.970626), // 지도의 중심좌표
-			level: 6 // 지도의 확대 레벨
+			level: 7 // 지도의 확대 레벨
 		};
 		const map = new kakao.maps.Map(container, options); // 지도를 생성합니다.
 
