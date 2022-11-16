@@ -31,6 +31,7 @@ export default function Header({stationCoord, setStationCoord}) {
 		return () => {
 			// 이벤트 핸들러 해제
 			document.removeEventListener('mousedown', handler);
+			
 		}
 	});
 
@@ -56,9 +57,9 @@ export default function Header({stationCoord, setStationCoord}) {
 								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{shortAddr}</div>
 
 								<button onClick={() => {
-									setSearchBtn(!searchBtn)
+									setSearchBtn(false)
 								}} className="searchBtn">
-									<DropDownArrowIcon className='inline w-6' />
+									<DropDownArrowIcon id="drop-down-icon" className='inline w-6' />
 								</button>
 							</div>
 							{
@@ -123,9 +124,9 @@ export default function Header({stationCoord, setStationCoord}) {
 								<LocationIcon className='inline w-6' />
 								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{shortAddr}</div>
 								<button onClick={() => {
-									setSearchBtn(!searchBtn)
+									setSearchBtn(true)
 								}} className="searchBtn">
-									<DropDownArrowIcon className='inline w-6 rotate-180' />
+									<DropDownArrowIcon id="drop-down-icon" className='inline w-6 rotate-180' />
 								</button>
 							</div>
 							{
@@ -177,7 +178,7 @@ export default function Header({stationCoord, setStationCoord}) {
 								}
 						</div>
 					</div>
-					<SearchBox addr={shortAddr} setAddr={setShortAddr} coord={stationCoord} setCoord={setStationCoord}/>
+					<SearchBox setAddr={setShortAddr} setCoord={setStationCoord} setSearchBtn={setSearchBtn}/>
 				</div>
 			}
 		</>

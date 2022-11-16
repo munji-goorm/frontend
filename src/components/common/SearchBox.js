@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 import axios from 'axios';
 
-export const SearchBox = ({setAddr, setCoord}) => {
+export const SearchBox = ({setAddr, setCoord, setSearchBtn}) => {
 	/**검색어 자동완성 */
 	const [inputValue, setInputValue] = useState('');
 	const [isHaveInputValue, setIsHaveInputValue] = useState(false);
@@ -46,6 +46,8 @@ export const SearchBox = ({setAddr, setCoord}) => {
 			lat: clickedItem.xCoord,
 			lng: clickedItem.yCoord
 		});
+		setSearchBtn(true);
+		document.getElementById('drop-down-icon').classList.remove('rotate-180');
 	}
 
 	const handleDropDownKey = event => {
@@ -67,7 +69,7 @@ export const SearchBox = ({setAddr, setCoord}) => {
 	}
 
 	return (
-		<div className='flex items-center flex-col fixed top-[4rem] z-20 w-full h-[25rem] bg-[#ffffff]'>
+		<div id="search-box" className='flex items-center flex-col fixed top-[4rem] z-20 w-full h-[25rem] bg-[#ffffff]'>
 			<div className='w-[63rem] h-[25rem] flex flex-col items-center'>
 				<div className='flex items-center mt-[1.5rem] w-[58rem] h-[3rem] bg-[#f4f4f4] rounded-3xl'>
 					<SearchIcon className='ml-4' />
