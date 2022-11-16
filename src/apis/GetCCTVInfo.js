@@ -9,7 +9,7 @@ export const GetCCTVInfo = () => {
 		yCoord: 126.89889,
 	});
 
-	const url = process.env.REACT_APP_BACKEND_URL;
+	// const url = process.env.REACT_APP_BACKEND_URL;
 	const endpoint = '/cctv';
 
 	useEffect(() => {

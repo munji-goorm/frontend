@@ -11,7 +11,7 @@ export const SearchBox = ({setAddr, setCoord, setSearchBtn}) => {
 
 	useEffect(() => {
 		const showDropDownList = async () => {
-			const url = process.env.REACT_APP_BACKEND_URL;
+			// const url = process.env.REACT_APP_BACKEND_URL;
 		const endpoint = '/main/search';
 			try {
 				if (inputValue === '') {

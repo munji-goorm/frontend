@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const GetMainData = (tmX, tmY) => {
 	// tm좌표기반의 근접측정소를 조회하고 측정소 이름을 가져옵니다.
-	const url = process.env.REACT_APP_BACKEND_URL;
+	// const url = process.env.REACT_APP_BACKEND_URL;
 	const endpoint = '/main';
 	const API_KEY = process.env.REACT_APP_STATION_API_KEY;
 

@@ -23,7 +23,7 @@ export const GetStationInfo = () => {
 		stationName: "중구"
 	});
 
-	const url = process.env.REACT_APP_BACKEND_URL;
+	// const url = process.env.REACT_APP_BACKEND_URL;
 	const endpoint = '/map'
 
 	useEffect(() => {

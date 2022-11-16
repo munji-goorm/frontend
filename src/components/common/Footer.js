@@ -53,7 +53,7 @@ export default function Footer() {
 				<div className='flex flex-col items-center justify-center'>
 					<div className='flex flex-row'>
 						<div className='mx-[0.5rem]'>
-							<a href='https://github.com/munji-goorm' target="_blank">
+							<a href='https://github.com/munji-goorm' target="_blank" rel="noreferrer">
 							<GithubIcon />
 							</a>
 						</div>
