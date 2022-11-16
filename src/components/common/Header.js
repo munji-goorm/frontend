@@ -6,14 +6,14 @@ import { ReactComponent as DropDownArrowIcon } from '../../assets/icons/dropDown
 import { Coord2address, GetLocation } from '../../apis';
 import { SearchBox } from './SearchBox';
 
-export default function Header({stationCoord, setStationCoord}) {
+export default function Header({ setStationCoord }) {
 	const [searchBtn, setSearchBtn] = useState(true);
 	const header = useRef();
 	const location = useLocation();
 	let coord = GetLocation();
 	let addr = Coord2address(coord);
 	const [shortAddr, setShortAddr] = useState(addr);
-	
+
 	useEffect(() => {
 		setShortAddr(addr);
 	}, [addr]);
@@ -31,7 +31,7 @@ export default function Header({stationCoord, setStationCoord}) {
 		return () => {
 			// 이벤트 핸들러 해제
 			document.removeEventListener('mousedown', handler);
-			
+
 		}
 	});
 
@@ -45,39 +45,47 @@ export default function Header({stationCoord, setStationCoord}) {
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
 									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-									<span className='font-Kyobo px-2 text-2xl text-[#272727]'>먼지구름</span>
+									<span className='px-2 text-2xl text-[#272727]' style={{fontFamily:"LeeSeoyun"}}>먼지구름</span>
 								</div>
 							</Link>
-							<div className='ml-[11rem] flex items-center'>
-								<button onClick={() => {
-									window.location.reload();
-								}}>
-									<LocationIcon className='inline w-6' />
-								</button>
-								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{shortAddr}</div>
-
-								<button onClick={() => {
-									setSearchBtn(false)
-								}} className="searchBtn">
-									<DropDownArrowIcon id="drop-down-icon" className='inline w-6' />
-								</button>
-							</div>
 							{
-									location.pathname === '/'
-									? <div className='flex flex-row items-center'>
-									<Link to="/">
-										<button
-											className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>대기오염 현황</button>
-									</Link>
-									<Link to="/airmap">
-										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
-									</Link>
-									<Link to="/livecam">
-										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
-									</Link>
-								</div>
-									: ( location.pathname === '/airmap'
-											? <div className='flex flex-row items-center'>
+								location.pathname === '/'
+									?
+									<div className='ml-[11rem] flex items-center'>
+										<button onClick={() => {
+											window.location.reload();
+										}}>
+											<LocationIcon className='inline w-6' />
+										</button>
+										<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{shortAddr}</div>
+
+										<button onClick={() => {
+											setSearchBtn(false)
+										}} className="searchBtn">
+											<DropDownArrowIcon id="drop-down-icon" className='inline w-6' />
+										</button>
+									</div>
+									: <></>
+							}
+
+							{
+								location.pathname === '/'
+									?
+
+									<div className='flex flex-row items-center'>
+										<Link to="/">
+											<button
+												className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'>대기오염 현황</button>
+										</Link>
+										<Link to="/airmap">
+											<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
+										</Link>
+										<Link to="/livecam">
+											<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
+										</Link>
+									</div>
+									: (location.pathname === '/airmap'
+										? <div className='flex flex-row items-center'>
 											<Link to="/">
 												<button
 													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>대기오염 현황</button>
@@ -89,7 +97,7 @@ export default function Header({stationCoord, setStationCoord}) {
 												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
 											</Link>
 										</div>
-											: <div className='flex flex-row items-center'>
+										: <div className='flex flex-row items-center'>
 											<Link to="/">
 												<button
 													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
@@ -104,7 +112,7 @@ export default function Header({stationCoord, setStationCoord}) {
 											</Link>
 										</div>
 									)
-								}
+							}
 						</div>
 					</div>
 				</div>
@@ -116,7 +124,7 @@ export default function Header({stationCoord, setStationCoord}) {
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
 									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-									<span className='font-Kyobo px-2 text-2xl text-[#272727]'>먼지구름</span>
+									<span className='px-2 text-2xl text-[#272727]'style={{fontFamily:"LeeSeoyun"}}>먼지구름</span>
 								</div>
 							</Link>
 
@@ -130,23 +138,23 @@ export default function Header({stationCoord, setStationCoord}) {
 								</button>
 							</div>
 							{
-									location.pathname === '/'
+								location.pathname === '/'
 									? <div className='flex flex-row items-center'>
-									<Link to="/">
-										<button
-											className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'
-											onClick={(e) => { }}
-										>대기오염 현황</button>
-									</Link>
-									<Link to="/airmap">
-										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
-									</Link>
-									<Link to="/livecam">
-										<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
-									</Link>
-								</div>
-									: ( location.pathname === '/airmap'
-											? <div className='flex flex-row items-center'>
+										<Link to="/">
+											<button
+												className='h-[2rem] px-[0.7rem] flex items-center font-semibold text-[#272727]'
+												onClick={(e) => { }}
+											>대기오염 현황</button>
+										</Link>
+										<Link to="/airmap">
+											<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>지도로 보기</button>
+										</Link>
+										<Link to="/livecam">
+											<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
+										</Link>
+									</div>
+									: (location.pathname === '/airmap'
+										? <div className='flex flex-row items-center'>
 											<Link to="/">
 												<button
 													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
@@ -160,7 +168,7 @@ export default function Header({stationCoord, setStationCoord}) {
 												<button className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'>실시간 영상</button>
 											</Link>
 										</div>
-											: <div className='flex flex-row items-center'>
+										: <div className='flex flex-row items-center'>
 											<Link to="/">
 												<button
 													className='h-[2rem] px-[0.7rem] flex items-center font-base text-[#838383]'
@@ -175,10 +183,10 @@ export default function Header({stationCoord, setStationCoord}) {
 											</Link>
 										</div>
 									)
-								}
+							}
 						</div>
 					</div>
-					<SearchBox setAddr={setShortAddr} setCoord={setStationCoord} setSearchBtn={setSearchBtn}/>
+					<SearchBox setAddr={setShortAddr} setCoord={setStationCoord} setSearchBtn={setSearchBtn} />
 				</div>
 			}
 		</>
