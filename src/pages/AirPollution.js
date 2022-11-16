@@ -1,12 +1,8 @@
 import React from 'react';
 import { DailyForecastBox, HitmapBox, MainBox, PollutantBox, WholeAirInfoBox } from '../components/AirPollution';
 import { PM10Box } from '../components/AirPollution/PM10Box';
-import { GetLocation, Coord2TM, GetMainData } from '../apis';
 
-export default function AirPollution() {
-	let coord = GetLocation();
-	let tm = Coord2TM(coord);
-	let stationData = GetMainData(tm.tmX, tm.tmY);
+export default function AirPollution({stationData}) {
 	let stationInfo = stationData.stationInfo;
 	let grade = stationInfo.khaiState;
 	let dateTime = stationInfo.dateTime;

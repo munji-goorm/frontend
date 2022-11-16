@@ -6,22 +6,17 @@ import { ReactComponent as DropDownArrowIcon } from '../../assets/icons/dropDown
 import { Coord2address, GetLocation } from '../../apis';
 import { SearchBox } from './SearchBox';
 
-export default function Header() {
+export default function Header({stationCoord, setStationCoord}) {
 	const [searchBtn, setSearchBtn] = useState(true);
 	const header = useRef();
 	const location = useLocation();
 	let coord = GetLocation();
 	let addr = Coord2address(coord);
 	const [shortAddr, setShortAddr] = useState(addr);
-	const [searchCoord, setSearchCoord] = useState(coord);
-
+	
 	useEffect(() => {
 		setShortAddr(addr);
 	}, [addr]);
-
-	useEffect(() => {
-		
-	}, [shortAddr]);
 
 	useEffect(() => {
 		// 이벤트 핸들러 함수
@@ -182,7 +177,7 @@ export default function Header() {
 								}
 						</div>
 					</div>
-					<SearchBox addr={shortAddr} setAddr={setShortAddr}/>
+					<SearchBox addr={shortAddr} setAddr={setShortAddr} coord={stationCoord} setCoord={setStationCoord}/>
 				</div>
 			}
 		</>

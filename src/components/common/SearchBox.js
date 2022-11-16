@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 import axios from 'axios';
 
-export const SearchBox = ({addr, setAddr}) => {
+export const SearchBox = ({setAddr, setCoord}) => {
 	/**검색어 자동완성 */
 	const [inputValue, setInputValue] = useState('');
 	const [isHaveInputValue, setIsHaveInputValue] = useState(false);
 	const [dropDownList, setDropDownList] = useState([]);
 	const [dropDownItemIndex, setDropDownItemIndex] = useState(-1);
-	const [shortAddr, setShortAddr] = useState(addr);
 
 	useEffect(() => {
 		const showDropDownList = async () => {
@@ -25,11 +24,6 @@ export const SearchBox = ({addr, setAddr}) => {
 						}
 					});
 					const data = res.data.data;
-					console.log(data);
-					// let fullAddr = [];
-					// for (let i = 0; i < data.length; i++) {
-					// 	fullAddr.push(data[i].fullAddr);
-					// }
 					setDropDownList(data);
 				}
 			} catch (e) {
@@ -45,9 +39,13 @@ export const SearchBox = ({addr, setAddr}) => {
 	}
 
 	const clickDropDownItem = clickedItem => {
-		setInputValue(clickedItem);
+		setInputValue(clickedItem.shortAddr);
 		setIsHaveInputValue(false);
-		setAddr(clickedItem);
+		setAddr(clickedItem.shortAddr);
+		setCoord({
+			lat: clickedItem.xCoord,
+			lng: clickedItem.yCoord
+		});
 	}
 
 	const handleDropDownKey = event => {
@@ -87,7 +85,7 @@ export const SearchBox = ({addr, setAddr}) => {
 								return (
 									<div 
 									key={dropDownIndex}
-									onClick={() => clickDropDownItem(dropDownItem.shortAddr)}
+									onClick={() => clickDropDownItem(dropDownItem)}
 									onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
 									className={dropDownItemIndex === dropDownIndex ? 'bg-[#f4f4f4] p-1 text-lg' : 'p-1 text-lg'}
 									>
