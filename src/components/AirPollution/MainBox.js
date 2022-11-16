@@ -83,12 +83,14 @@ export const MainBox = ({grade, dateTime}) => {
 				<div className='relative'>
 					<div className='flex items-center justify-center py-8'>
 						{icon}
-						<div className='px-6 py-6 font-Kyobo text-[60px] text-center text-[#ffffff]'>{grade}</div>
+						<div className='px-6 py-6 text-[60px] text-center text-[#ffffff]'
+						style={{fontFamily:"LeeSeoyun"}}>{grade}</div>
 					</div>
 					<div className='justify-center speechBubble'>
 						<div className='relative flex justify-center bottom-10'>
 							<SpeechBubble />
-							<div className='absolute text-2xl font-Kyobo top-5 text-[#ffffff]'>
+							<div className='absolute text-2xl top-5 text-[#ffffff]'
+							style={{fontFamily:"LeeSeoyun"}}>
 								{msg}
 							</div>
 						</div>

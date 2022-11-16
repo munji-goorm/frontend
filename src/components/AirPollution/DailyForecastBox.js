@@ -50,8 +50,8 @@ export const DailyForecastBox = ({forecast}) => {
 					<div className='w-[5rem] text-base font-semibold text-center'>
 						오늘
 					</div>
-					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg font-Kyobo items-center justify-center text-[#ffffff] text-2xl'
-							 style={{backgroundColor: setColor(forecast[date[0]])}}>
+					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg items-center justify-center text-[#ffffff] text-2xl'
+							 style={{backgroundColor: setColor(forecast[date[0]]),fontFamily:"LeeSeoyun"}}>
 						{forecast[date[0]]}
 					</div>
 					<img className="inline w-14" alt="munjiIcon" src={setIcon(forecast[date[0]])}></img>
@@ -61,8 +61,8 @@ export const DailyForecastBox = ({forecast}) => {
 					<div className='w-[5rem] text-base text-[#707070] font-semibold text-center'>
 						{date[1]}
 					</div>
-					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg font-Kyobo items-center justify-center text-[#ffffff] text-2xl'
-							style={{backgroundColor: setColor(forecast[date[1]])}}>
+					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg items-center justify-center text-[#ffffff] text-2xl'
+							style={{backgroundColor: setColor(forecast[date[1]]),fontFamily:"LeeSeoyun"}}>
 						{forecast[date[1]]}
 					</div>
 					<img className="inline w-14" alt="munjiIcon" src={setIcon(forecast[date[1]])}></img>
@@ -72,8 +72,8 @@ export const DailyForecastBox = ({forecast}) => {
 					<div className='w-[5rem] text-base text-[#707070] font-semibold text-center'>
 					{date[2]}
 					</div>
-					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg font-Kyobo items-center justify-center text-[#ffffff] text-2xl'
-					style={{backgroundColor: setColor(forecast[date[2]])}}>
+					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg items-center justify-center text-[#ffffff] text-2xl'
+					style={{backgroundColor: setColor(forecast[date[2]]),fontFamily:"LeeSeoyun"}}>
 					{forecast[date[2]]}
 					</div>
 					<img className="inline w-14" alt="munjiIcon" src={setIcon(forecast[date[2]])}></img>
@@ -83,8 +83,8 @@ export const DailyForecastBox = ({forecast}) => {
 					<div className='w-[5rem] text-base text-[#707070] font-semibold text-center'>
 					{date[3]}
 					</div>
-					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg font-Kyobo items-center justify-center text-[#ffffff] text-2xl'
-					style={{backgroundColor: setColor(forecast[date[3]])}}>
+					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg items-center justify-center text-[#ffffff] text-2xl'
+					style={{backgroundColor: setColor(forecast[date[3]]),fontFamily:"LeeSeoyun"}}>
 					{forecast[date[3]]}
 					</div>
 					<img className="inline w-14" alt="munjiIcon" src={setIcon(forecast[date[3]])}></img>
@@ -94,8 +94,8 @@ export const DailyForecastBox = ({forecast}) => {
 					<div className='w-[5rem] text-base text-[#707070] font-semibold text-center'>
 					{date[4]}
 					</div>
-					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg font-Kyobo items-center justify-center text-[#ffffff] text-2xl'
-							style={{backgroundColor: setColor(forecast[date[4]])}}>
+					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg items-center justify-center text-[#ffffff] text-2xl'
+							style={{backgroundColor: setColor(forecast[date[4]]),fontFamily:"LeeSeoyun"}}>
 					{forecast[date[4]]}
 					</div>
 					<img className="inline w-14" alt="munjiIcon" src={setIcon(forecast[date[4]])}></img>
@@ -105,8 +105,8 @@ export const DailyForecastBox = ({forecast}) => {
 					<div className='w-[5rem] text-base text-[#707070] font-semibold text-center'>
 					{date[5]}
 					</div>
-					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg font-Kyobo items-center justify-center text-[#ffffff] text-2xl'
-							style={{backgroundColor: setColor(forecast[date[5]])}}>
+					<div className='flex px-3 w-[4rem] h-[2.5rem] rounded-lg items-center justify-center text-[#ffffff] text-2xl'
+							style={{backgroundColor: setColor(forecast[date[5]]),fontFamily:"LeeSeoyun"}}>
 					{forecast[date[5]]}
 					</div>
 					<img className="inline w-14" alt="munjiIcon" src={setIcon(forecast[date[5]])}></img>
