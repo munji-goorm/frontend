@@ -45,7 +45,7 @@ export default function Header({ setStationCoord }) {
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
 									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-									<span className='px-2 text-2xl text-[#272727]' style={{fontFamily:"LeeSeoyun"}}>먼지구름</span>
+									<span className='px-2 text-2xl text-[#272727]' style={{fontFamily:"LeeSeoyun"}}>구름먼지</span>
 								</div>
 							</Link>
 							{
