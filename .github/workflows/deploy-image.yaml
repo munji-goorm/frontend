@@ -22,12 +22,3 @@ jobs:
       with:
         push: true
         tags: oduodg/munji-frontend:${{ github.sha }}
-  # 
-  # update Image tag to front-deploy.yaml
-  #
-    - name: Check out k8s repo
-      uses: actions/chekout@v3
-      with:
-        repository: munji-goorm/manifest
-    - name: git push image tag to k8 repo
-      run: ls -al
