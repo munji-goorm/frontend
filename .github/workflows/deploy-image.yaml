@@ -38,7 +38,7 @@ jobs:
     - name: git push image tag to k8 repo
       run: |
         cd manifest
-        sed "39 c\        image: oduodg/mungi-frontend:${{ github.sha }}" front-deploy.yaml
+        sed -i "39 c\        image: oduodg/mungi-frontend:${{ github.sha }}" front-deploy.yaml
         git add .
         git commit -m "Edit front image tag"
         git push -f --set-upstream origin main
