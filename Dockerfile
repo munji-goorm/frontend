@@ -1,5 +1,7 @@
 #Specify a base image
 FROM node:18-alpine as builder
+ARG REACT_APP_KAKAOMAP_API_KEY_JS
+ENV REACT_APP_KAKAOMAP_API_KEY_JS=$REACT_APP_KAKAOMAP_API_KEY_JS
 
 #Specify a working directory
 WORKDIR '/app'

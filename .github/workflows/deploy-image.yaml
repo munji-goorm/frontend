@@ -20,6 +20,7 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with:
+        build_args: REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }}
         push: true
         tags: oduodg/munji-frontend:${{ github.sha }}
   # 
