@@ -21,7 +21,8 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         build-args: |
-          REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }}REACT_APP_KAKAOMAP_API_KEY_REST=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_REST}}
+          REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }}
+          REACT_APP_KAKAOMAP_API_KEY_REST=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_REST}}
           REACT_APP_STATION_API_KEY=${{ secrets.REACT_APP_STATION_API_KEY}}
         push: true
         tags: oduodg/munji-frontend:${{ github.sha }}
