@@ -41,9 +41,9 @@ export const DonutChart = ({ pollutant, grade, value, name, color }) => {
 				data={[
 					{
 						grade: grade,
-						value: value,
-						color: color,
-					},
+						value: 20,
+						color: color
+					}
 				]}
 				reveal={reveal} //퍼센트 치수
 				lineWidth={30} //도넛 두께
