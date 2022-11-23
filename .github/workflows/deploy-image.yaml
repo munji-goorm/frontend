@@ -30,7 +30,7 @@ jobs:
         ECR_REPOSITORY: munji-repo
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        docker build -t --build-arg REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }} --build-arg REACT_APP_KAKAOMAP_API_KEY_REST=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_REST}} --build-arg REACT_APP_STATION_API_KEY=${{ secrets.REACT_APP_STATION_API_KEY}} $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build --build-arg REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }} --build-arg REACT_APP_KAKAOMAP_API_KEY_REST=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_REST}} --build-arg REACT_APP_STATION_API_KEY=${{ secrets.REACT_APP_STATION_API_KEY}} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
