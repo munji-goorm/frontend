@@ -11,21 +11,28 @@ jobs:
       uses: actions/checkout@v3
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
-    - name: Login to DockerHub
-      uses: docker/login-action@v1
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-    - name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with:
-        build-args: |
-          REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }}
-          REACT_APP_KAKAOMAP_API_KEY_REST=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_REST}}
-          REACT_APP_STATION_API_KEY=${{ secrets.REACT_APP_STATION_API_KEY}}
-        push: true
-        tags: oduodg/munji-frontend:${{ github.sha }}
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: munji-repo
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build --build-arg REACT_APP_KAKAOMAP_API_KEY_JS=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }} --build-arg REACT_APP_KAKAOMAP_API_KEY_REST=${{ secrets.REACT_APP_KAKAOMAP_API_KEY_REST}} --build-arg REACT_APP_STATION_API_KEY=${{ secrets.REACT_APP_STATION_API_KEY}} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
   # 
   # update Image tag to front-deploy.yaml
   #
@@ -42,7 +49,7 @@ jobs:
     - name: git push image tag to k8 repo
       run: |
         cd manifest
-        sed -i "40 c\        image: oduodg/munji-frontend:${{ github.sha }}" front-deploy.yaml
+        sed -i "40 c\        image: 320451040304.dkr.ecr.ap-northeast-2.amazonaws.com/munji-repo:${{ github.sha }}" front-deploy.yaml
         git add .
         git commit -m "Edit front image tag"
         git push -f --set-upstream origin main
