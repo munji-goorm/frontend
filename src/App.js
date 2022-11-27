@@ -14,7 +14,7 @@ function App() {
   let coord;
   let tm;
   let stationData;
-  if (stationCoord.lat !== '0' && stationCoord.lng !== '0'){
+  if (stationCoord.lat !== 0 && stationCoord.lng !== 0){
     coord = stationCoord;
   } else {
     coord = GetLocation();
