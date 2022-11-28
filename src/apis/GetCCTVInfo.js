@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+/** CCTV data를 불러옵니다. */
 export const GetCCTVInfo = () => {
 	const [CCTVData, setCCTVData] = useState({
 		cctvName: "상암사거리",
