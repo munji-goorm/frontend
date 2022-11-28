@@ -3,14 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import AppIcon from '../../assets/images/goodMunji.png';
 import { ReactComponent as LocationIcon } from '../../assets/icons/location.svg';
 import { ReactComponent as DropDownArrowIcon } from '../../assets/icons/dropDownArrow.svg';
-import { GetLocation } from '../../apis';
 import { SearchBox } from './SearchBox';
 
-export default function Header({ addr, setCoord }) {
+export default function Header({ addr, setAddr, setCoord }) {
 	const [searchBtn, setSearchBtn] = useState(true);
 	const header = useRef();
 	const location = useLocation();
 
+	/* 지역 검색창 이벤트 핸들러 */
 	useEffect(() => {
 		// 이벤트 핸들러 함수
 		const handler = (e) => {
@@ -37,33 +37,27 @@ export default function Header({ addr, setCoord }) {
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
 									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-									<span className='px-2 text-2xl text-[#272727]' style={{fontFamily:"LeeSeoyun"}}>먼지구름</span>
+									<span className='px-2 text-2xl text-[#272727]' style={{ fontFamily: "LeeSeoyun" }}>먼지구름</span>
 								</div>
 							</Link>
-							{
-								location.pathname === '/'
-									?
-									<div className='ml-[11rem] flex items-center'>
-										<button onClick={() => {
-											window.location.reload();
-										}}>
-											<LocationIcon className='inline w-6' />
-										</button>
-										<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{addr}</div>
+							<div className='ml-[11rem] flex items-center'>
+								<button onClick={() => {
+									window.location.reload();
+								}}>
+									<LocationIcon className='inline w-6' />
+								</button>
+								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{addr}</div>
 
-										<button onClick={() => {
-											setSearchBtn(false)
-										}} className="searchBtn">
-											<DropDownArrowIcon id="drop-down-icon" className='inline w-6' />
-										</button>
-									</div>
-									: <></>
-							}
+								<button onClick={() => {
+									setSearchBtn(false)
+								}} className="searchBtn">
+									<DropDownArrowIcon id="drop-down-icon" className='inline w-6' />
+								</button>
+							</div>
 
 							{
 								location.pathname === '/'
 									?
-
 									<div className='flex flex-row items-center'>
 										<Link to="/">
 											<button
@@ -116,7 +110,7 @@ export default function Header({ addr, setCoord }) {
 							<Link to='/'>
 								<div className='flex flex-row items-center'>
 									<img className="inline w-10" alt="appIcon" src={AppIcon}></img>
-									<span className='px-2 text-2xl text-[#272727]'style={{fontFamily:"LeeSeoyun"}}>먼지구름</span>
+									<span className='px-2 text-2xl text-[#272727]' style={{ fontFamily: "LeeSeoyun" }}>먼지구름</span>
 								</div>
 							</Link>
 
@@ -178,7 +172,7 @@ export default function Header({ addr, setCoord }) {
 							}
 						</div>
 					</div>
-					{/* <SearchBox setAddr={setShortAddr} setCoord={setStationCoord} setSearchBtn={setSearchBtn} /> */}
+					<SearchBox setAddr={setAddr} setCoord={setCoord} setSearchBtn={setSearchBtn} />
 				</div>
 			}
 		</>
