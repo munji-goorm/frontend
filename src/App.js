@@ -36,7 +36,9 @@ function App() {
           <AirPollution stationData={stationData} addr={addr}/>
         } />
         <Route path="/airmap" element={<OntheMap />} />
-        <Route path="/livecam" element={<LiveCam />} />
+        <Route path="/livecam" element={
+        <LiveCam coord={coord}/>
+        } />
       </Routes>
       <Footer />
     </BrowserRouter>

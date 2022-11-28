@@ -1,29 +1,24 @@
 import React, { useEffect } from 'react';
-import { GetCCTVInfo, GetLocation } from '../../apis';
+import { GetCCTVInfo } from '../../apis';
 
-export const CCTVMap = () => {
+export const CCTVMap = ({coord}) => {
 	const { kakao } = window;
-	let coord = GetLocation();
 	const CCTVData = GetCCTVInfo();
 
 	let imageSrc = process.env.PUBLIC_URL + 'images/cctvMarker.png';
 	let imageSize = new kakao.maps.Size(15, 15);
 
 	useEffect(() => {
+		/* 지도 생성 */
 		const container = document.getElementById('kakaoMap'); // 지도를 표시할 div
 		const options = {
-			center: new kakao.maps.LatLng(37.584009, 126.970626), // 지도의 중심좌표
-			level: 7 // 지도의 확대 레벨
+			center: new kakao.maps.LatLng(coord.lat, coord.lng), // 지도의 중심좌표
+			level: 6 // 지도의 확대 레벨
 		};
 		const map = new kakao.maps.Map(container, options); // 지도를 생성합니다.
 
-		// 이동할 위도 경도 위치를 생성합니다
-		var moveLatLon = new kakao.maps.LatLng(coord.lat, coord.lng);
-		// 지도 중심을 이동 시킵니다
-		map.setCenter(moveLatLon);
-
+		/* cctv 마커 생성 */
 		for (let i = 0; i < CCTVData.length; i++) {
-			// 마커를 생성합니다.
 			let marker = new kakao.maps.Marker({
 				map: map,
 				position: new kakao.maps.LatLng(CCTVData[i].xCoord, CCTVData[i].yCoord),
@@ -32,6 +27,7 @@ export const CCTVMap = () => {
 				clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
 			});
 
+			/* cctv 새창에서 띄우기 */
 			let cctv_Url = CCTVData[i].cctv_Url;
 			kakao.maps.event.addListener(marker, 'click', function () {
 				let width = 320;
