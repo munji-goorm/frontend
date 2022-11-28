@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CCTVMap } from '../components/LiveCam';
 import { ReactComponent as DropDownArrowIcon } from '../assets/icons/dropDownArrow.svg';
 import seoulGood from '../assets/images/seoulGood.png';
-import seoulBad from '../assets/images/seoulBad.png';
+import busanGood from '../assets/images/busanGood.png';
+import jejuGood from '../assets/images/jejuGood.png';
 
-export default function LiveCam({coord}) {
-	
+export default function LiveCam({ coord }) {
+	const [clickBtn, setClickBtn] = useState(true);
+
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			<div className='relative my-[2rem] flex-col items-center flex justify-center'>
-				<CCTVMap coord={coord}/>
-				<div className='absolute z-20 w-[4rem] text-center text-[#ffffff] bg-[#272727] h-[2rem] py-1 right-[1rem] top-[1rem] rounded-md drop-shadow-lg'>CCTV</div>
+				<CCTVMap coord={coord} />
+				<div className='absolute z-10 w-[4rem] text-center text-[#ffffff] bg-[#272727] h-[2rem] py-1 right-[3rem] top-[0.2rem] text-base rounded'
+					style={{ boxShadow: "rgba(0, 0, 0, 0.15) 0px 2px 2px 0px" }}>CCTV</div>
 			</div>
 
-			<div className='justify-center flex flex-col rounded-xl mb-[1rem] w-[63rem] h-fit text-xs text-[#838383]'>
+			<div className='justify-center flex flex-col mb-[1rem] w-[63rem] h-fit text-xs text-[#838383]'>
 				<span>
 					* 도로교통법 145조에 의거하여 교통관제용으로 사용되는 CCTV 영상중, 도시교통정보센터 UTIC 사업으로 연결된 영상을 중심으로 제공해 드립니다.
 				</span>
@@ -45,13 +48,36 @@ export default function LiveCam({coord}) {
 
 				<iframe id="jejuVideo" frameBorder="0" allowFullScreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="펀제주 실시간 제주도 날씨 제주 협재 바다 라이브캠  Jeju Island in South Korea Live Cam" width="320" height="180" src="https://www.youtube.com/embed/oEXCjWsksA8?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;mute=1&amp;enablejsapi=1&amp;origin=http%3A%2F%2Flocalhost%3A3000&amp;widgetid=5" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"></iframe>
 			</div>
-			
-			<div className='w-[63rem] h-[30rem] my-[1rem] text-[#272727] text-sm flex flex-col'>
-				{/* 다른 날과 비교하기
-				<DropDownArrowIcon id="drop-down-icon" className='inline w-5' /> */}
-				<img className="float-left w-[20rem] mr-5" alt="seoulGood" src={seoulGood}></img>
-				<img className="float-left w-[20rem] mr-5" alt="seoulGood" src={seoulBad}></img>
+
+			{
+				clickBtn ?
+				<div className='w-[63rem] h-[1rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
+				<div className='flex items-center'>
+					미세먼지 적은 날과 비교하기
+					<button onClick={() => {
+						setClickBtn(false)
+					}}>
+					<DropDownArrowIcon id="drop-down-icon" className='inline w-5 rotate-180' />
+					</button>
+				</div>
 			</div>
+				:
+				<div className='w-[63rem] h-[10rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
+				<div className='flex items-center'>
+					미세먼지 적은 날과 비교하기
+					<button onClick={() => {
+						setClickBtn(true)
+					}}>
+					<DropDownArrowIcon id="drop-down-icon" className='inline w-5' />
+					</button>
+				</div>
+				<div className='w-[63rem] flex items-stretch justify-between'>
+					<img className="float-left w-[20.1rem]" alt="seoulGood" src={seoulGood} />
+					<img className="float-left w-[20.1rem]" alt="busanGood" src={busanGood} />
+					<img className="float-left w-[20.1rem]" alt="jejuGood" src={jejuGood} />
+				</div>
+			</div>
+			}
 		</div>
 	)
 }
