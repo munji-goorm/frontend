@@ -11,7 +11,7 @@ import { ReactComponent as SensitiveGroup } from '../../assets/icons/sensitiveGr
 import { ReactComponent as Airout } from '../../assets/icons/airout.svg';
 import { InstructionBox } from './InstructionBox';
 
-export const MainBox = ({grade, dateTime}) => {
+export const MainBox = ({grade, dateTime, addr}) => {
 	let color;
 	let msg;
 	let icon;
@@ -79,7 +79,7 @@ export const MainBox = ({grade, dateTime}) => {
 	return (
 		<div className='flex items-center w-[63rem] h-[23rem] my-[2rem]'>
 			<div className='relative rounded-md w-full h-[23rem]' style={{ backgroundColor: `${color}`}}>
-				<div className='w-[63rem] absolute top-4 px-[4rem] text-right text-sm text-[#ffffff]'>{dateTime} 업데이트</div>
+				<div className='w-[63rem] absolute top-4 px-[4rem] text-right text-sm text-[#ffffff]'>{dateTime} 업데이트 <br/>{addr}</div>
 				<div className='relative'>
 					<div className='flex items-center justify-center py-8'>
 						{icon}
