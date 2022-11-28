@@ -28,9 +28,24 @@ export const StationMap = ({ coord, name }) => {
 		const container = document.getElementById('kakaoMap'); //지도를 표시할 div
 		const options = {
 			center: new kakao.maps.LatLng(coord.lat, coord.lng), //지도의 중심좌표
-			level: 6 //지도의 확대 레벨
+			level: 7 //지도의 확대 레벨
 		};
 		const kakaoMap = new kakao.maps.Map(container, options); //지도를 생성합니다.
+
+		//지도 영역정보를 얻어옵니다 
+		var bounds = kakaoMap.getBounds();
+		//영역정보의 남서쪽 정보를 얻어옵니다 
+		var swLatlng = bounds.getSouthWest();
+		setSwLatLng({
+			xOne: swLatlng.Ma, //남서쪽 위도
+			yOne: swLatlng.La, //남서쪽 경도
+		});
+		//영역정보의 북동쪽 정보를 얻어옵니다 
+		var neLatlng = bounds.getNorthEast();
+		setNeLatLng({
+			xTwo: neLatlng.Ma, //북동쪽 위도
+			yTwo: neLatlng.La, //북동쪽 경도
+		});
 
 		// 지도 확대 축소를 제어할 수 있는 줌 컨트롤을 생성합니다
 		var zoomControl = new kakao.maps.ZoomControl();
@@ -83,7 +98,6 @@ export const StationMap = ({ coord, name }) => {
 			/* 지도 중심좌표 이동 */
 			var moveLatLon = new kakao.maps.LatLng(coord.lat, coord.lng);
 			map.setCenter(moveLatLon);
-			console.log("지도 렌더링 후" + coord.lat, coord.lng);
 
 			/* 지도 영역정보 얻어오기 */
 			let bounds = map.getBounds();
@@ -103,12 +117,9 @@ export const StationMap = ({ coord, name }) => {
 
 	//남서쪽과 북동쪽 위도, 경도에 따라 보이는 지도 영역 내의 측정소 정보를 불러옵니다.
 	useEffect(() => {
-		console.log("station length: " + station.length);
-		console.log(station);
-
 		for (let i = 0; i < station.length; i++) {
-			console.log(i + "번째 측정소: ");
-			console.log(station[i]);
+			//console.log(i + "번째 측정소: ");
+			//console.log(station[i]);
 
 			/* 오염 물질에 따라 등급과 수치 설정하기 */
 			if (name === "CAI") {
@@ -178,7 +189,7 @@ export const StationMap = ({ coord, name }) => {
 			}
 			setOverlay([new kakao.maps.CustomOverlay(overlayData), ...overlay]);
 		}
-	}, [station, name]);
+	}, [coord, station, name]);
 
 	return (
 		<div id='kakaoMap'
