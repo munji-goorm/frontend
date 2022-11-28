@@ -5,15 +5,15 @@ import { ReactComponent as NotionIcon } from '../../assets/icons/notion.svg';
 
 export default function Footer() {
 	return (
-		<div className='flex flex-col h-[25rem] mt-[5rem] bg-[#ffffff] outline outline-1 outline-[#cccccc] items-center justify-center text-[#272727]'>
+		<div className='flex flex-col h-[20rem] mt-[5rem] bg-[#ffffff] outline outline-1 outline-[#cccccc] items-center justify-center text-[#272727]'>
 			<div className='flex flex-col w-[63rem] h-[9rem] justify-center'>
 				<div className='flex flex-row items-center h-[4rem]'>
 					<img className="w-10" alt="appIcon" src={AppIcon}></img>
 					<div className='text-2xl ml-[0.5rem]' style={{ fontFamily: "LeeSeoyun" }}>만든 사람</div>
 				</div>
-				<div className='pt-1 text-lg' style={{ fontFamily: "LeeSeoyun" }}>
-					예쁘고 귀엽게 봐주세요. 감사합니다 :) <br />
-					이름을 클릭하면 개인 깃허브 링크로 이동합니다.
+				<div className='text-lg py-[0.3rem]' style={{ fontFamily: "LeeSeoyun" }}>
+					예쁘고 귀엽게 봐주세요. 감사합니다 :) <br/>
+					<span className='text-sm text-[#878787]'> 이름을 클릭하면 깃허브 링크로 이동합니다.</span>
 				</div>
 			</div>
 
@@ -54,8 +54,8 @@ export default function Footer() {
 					</div>
 				</div>
 
-				<div className='flex text-2xl' style={{ fontFamily: "LeeSeoyun" }}>
-					kakao cloud school <br />
+				<div className='flex text-xl' style={{ fontFamily: "LeeSeoyun" }}>
+					Kakao Cloud School <br />
 					Dev 1th. <br />
 					Final Project
 				</div>
@@ -73,7 +73,7 @@ export default function Footer() {
 						</div>
 					</div>
 					<div className='text-sm text-center text-[#838383] pt-[1rem]'>
-						ⓒ 2022 kakao cloud school Dev 1th. Team2 - Allrights reserved.
+						ⓒ 2022 MunjiGoorm - All rights reserved.
 					</div>
 				</div>
 			</div>
