@@ -54,27 +54,27 @@ export const MainBox = ({ grade, dateTime, stationName }) => {
 	if (grade === "좋음") {
 		color = "#549FF8";
 		msg = "오늘은 공기가 좋아요 ><";
-		icon = <img className="inline w-28" alt="icon" src={Good}></img>
+		icon = <img className="inline w-28 hover:rotate-6" alt="icon" src={Good}></img>
 		instructions = GoodInstruction;
 	} else if (grade === "보통") {
 		color = "#5AC451";
 		msg = "무난한 날입니다~~~!"
-		icon = <img className="inline w-28" alt="icon" src={Usual}></img>
+		icon = <img className="inline w-28 hover:rotate-6" alt="icon" src={Usual}></img>
 		instructions = UsualInstruction;
 	} else if (grade === "나쁨") {
 		color = "#F1AA3E"
 		msg = "대기질이 좋지않아요.."
-		icon = <img className="inline w-28" alt="icon" src={Bad}></img>
+		icon = <img className="inline w-28 hover:rotate-6" alt="icon" src={Bad}></img>
 		instructions = BadInstruction;
 	} else if (grade === "최악") {
 		color = "#D5534D";
 		msg = "오늘은 외출을 삼가세요!";
-		icon = <img className="inline w-28" alt="icon" src={VeryBad}></img>
+		icon = <img className="inline w-28 hover:rotate-6" alt="icon" src={VeryBad}></img>
 		instructions = veryBadInstruction;
 	} else { //점검중
 		color = "#838383";
 		msg = "기기를 점검중입니다..🛠"
-		icon = <img className="inline w-28" alt="icon" src={Undefined}></img>
+		icon = <img className="inline w-28 hover:rotate-6" alt="icon" src={Undefined}></img>
 		instructions = fixInstruction;
 	}
 
