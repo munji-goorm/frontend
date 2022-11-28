@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { GetLocation, GetStationInfo } from '../../apis';
 
-export const StationMap = ({ name }) => {
+export const StationMap = ({ coord, name }) => {
 	const { kakao } = window;
-	let coord = GetLocation();
-	//console.log(coord);
-
 	const stationData = GetStationInfo();
-	//console.log(stationData);
 
 	let grade;
 	let val;
@@ -15,17 +11,12 @@ export const StationMap = ({ name }) => {
 	useEffect(() => {
 		const container = document.getElementById('kakaoMap'); // 지도를 표시할 div
 		const options = {
-			center: new kakao.maps.LatLng(37.564639, 126.975961), // 지도의 중심좌표
+			center: new kakao.maps.LatLng(coord.lat, coord.lng), // 지도의 중심좌표
 			level: 7 // 지도의 확대 레벨
 		};
 		const map = new kakao.maps.Map(container, options); // 지도를 생성합니다.
 
-		// 이동할 위도 경도 위치를 생성합니다
-		var moveLatLon = new kakao.maps.LatLng(coord.lat, coord.lng);
-		// 지도 중심을 이동 시킵니다
-		map.setCenter(moveLatLon);
-
-
+		/* 측정소 마커와 커스텀오버레이 생성하기 */
 		for (let i = 0; i < stationData.length; i++) {
 			if (name === "CAI") {
 				grade = stationData[i].khaiState;
