@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export const GetStationInfo = (xOne, xTwo, yOne, yTwo) => {
+export const GetStationInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 
 	const [stationData, setStationData] = useState({
 		coState: "좋음",
@@ -30,6 +30,7 @@ export const GetStationInfo = (xOne, xTwo, yOne, yTwo) => {
 	const getStationInfo = async () => {
 		await axios.get(url + endpoint, {
 			params: {
+				mapLevel: mapLevel,
 				xOne: xOne,
 				xTwo: xTwo,
 				yOne: yOne,

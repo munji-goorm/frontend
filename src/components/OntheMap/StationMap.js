@@ -7,7 +7,11 @@ export const StationMap = ({ coord, name }) => {
 	const [marker, setMarker] = useState([]);
 	const [overlay, setOverlay] = useState([]);
 
+	//등급, 수치, 측정소
 	let grade, val, station;
+
+	//지도의 줌(확대,축소)레벨
+	const [zoomLevel, setZoomLevel] = useState(7);
 
 	//SouthWest 남서쪽 위도, 경도
 	const [swLatlng, setSwLatLng] = useState({
@@ -21,7 +25,7 @@ export const StationMap = ({ coord, name }) => {
 		yTwo: 0,
 	});
 
-	station = GetStationInfo(swLatlng.xOne, neLatlng.xTwo, swLatlng.yOne, neLatlng.yTwo); //측정소 정보를 불러옵니다.
+	station = GetStationInfo(zoomLevel, swLatlng.xOne, neLatlng.xTwo, swLatlng.yOne, neLatlng.yTwo); //측정소 정보를 불러옵니다.
 
 	/**맨 처음 지도 생성하기 */
 	useEffect(() => {
@@ -51,7 +55,7 @@ export const StationMap = ({ coord, name }) => {
 		var zoomControl = new kakao.maps.ZoomControl();
 		kakaoMap.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-		// 마우스 드래그로 지도 이동이 완료되었을 때 남서쪽과 북동쪽 위도, 경도를 새로 설정합니다.
+		// 마우스 드래그로 지도 이동이 완료되었을 때 남서쪽과 북동쪽 위도/경도를 새로 설정합니다.
 		kakao.maps.event.addListener(kakaoMap, 'dragend', function () {
 			//지도 영역정보를 얻어옵니다 
 			var bounds = kakaoMap.getBounds();
@@ -70,7 +74,7 @@ export const StationMap = ({ coord, name }) => {
 			});
 		});
 
-		// 지도가 확대 또는 축소되면 남서쪽과 북동쪽 위도, 경도를 새로 설정합니다.
+		// 지도가 확대 또는 축소되면 줌레벨, 남서쪽과 북동쪽 위도/경도를 새로 설정합니다.
 		kakao.maps.event.addListener(kakaoMap, 'zoom_changed', function () {
 			//지도 영역정보를 얻어옵니다 
 			var bounds = kakaoMap.getBounds();
@@ -87,6 +91,9 @@ export const StationMap = ({ coord, name }) => {
 				xTwo: neLatlng.Ma, //북동쪽 위도
 				yTwo: neLatlng.La, //북동쪽 경도
 			});
+
+			//줌레벨을 설정합니다.
+			setZoomLevel(kakaoMap.getLevel());
 		});
 
 		setMap(kakaoMap);
