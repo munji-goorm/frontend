@@ -67,9 +67,7 @@ export default function Footer() {
 							<a href='https://github.com/munji-goorm' target="_blank" rel="noreferrer">
 								<GithubIcon className='mx-[0.3rem]' />
 							</a>
-							<a href='https://oduodg.notion.site/munji-goorm-1edd7fd5820d463481096403530dbda0' target="_blank" rel="noreferrer">
 								<NotionIcon className='mx-[0.3rem]' />
-							</a>
 						</div>
 					</div>
 					<div className='text-sm text-center text-[#838383] pt-[1rem]'>
