@@ -4,11 +4,8 @@ import { GetStationInfo } from '../../apis';
 export const StationMap = ({ coord, name }) => {
 	const { kakao } = window;
 	const [map, setMap] = useState(null);
-	const [marker, setMarker] = useState([]);
+	const [markers, setMarkers] = useState([]);
 	const [overlay, setOverlay] = useState([]);
-
-	//등급, 수치, 측정소
-	let grade, val, station;
 
 	//지도의 줌(확대,축소)레벨
 	const [zoomLevel, setZoomLevel] = useState(7);
@@ -25,7 +22,100 @@ export const StationMap = ({ coord, name }) => {
 		yTwo: 0,
 	});
 
-	station = GetStationInfo(zoomLevel, swLatlng.xOne, neLatlng.xTwo, swLatlng.yOne, neLatlng.yTwo); //측정소 정보를 불러옵니다.
+	let stations = GetStationInfo(zoomLevel, swLatlng.xOne, neLatlng.xTwo, swLatlng.yOne, neLatlng.yTwo); //측정소 정보를 불러옵니다.
+
+	function addMarker(List) {
+		// 지도 이동 후 새로운 마커, 오버레이 배열을 담을 변수 선언
+		let markerArr = [];
+		let overlayArr = [];
+
+		let grade, val, imageSrc; //등급, 수치, 마커이미지
+		for (let i=0; i < List.length; i++){
+			/* 오염 물질에 따라 등급과 수치 설정하기 */
+			if (name === "CAI") {
+				grade = List[i].khaiState;
+				val = List[i].khaiValue;
+			} else if (name === "PM10") {
+				grade = List[i].pm10State;
+				val = List[i].pm10Value;
+			} else if (name === "PM25") {
+				grade = List[i].pm25State;
+				val = List[i].pm25Value;
+			} else if (name === "SO2") {
+				grade = List[i].so2State;
+				val = List[i].so2Value;
+			} else if (name === "NO2") {
+				grade = List[i].no2State;
+				val = List[i].no2Value;
+			} else if (name === "CO") {
+				grade = List[i].coState;
+				val = List[i].coValue;
+			} else if (name === "O3") {
+				grade = List[i].o3State;
+				val = List[i].o3Value;
+			}
+			if (val === -1) {
+				val = "점검중";
+			}
+	
+			/* 등급에 따라 마커 이미지(색상) 설정하기 */
+			if (grade === "좋음") {
+				imageSrc = process.env.PUBLIC_URL + '/images/markerBlue.png';
+			} else if (grade === "보통") {
+				imageSrc = process.env.PUBLIC_URL + '/images/markerGreen.png';
+			} else if (grade === "나쁨") {
+				imageSrc = process.env.PUBLIC_URL + '/images/markerOrange.png';
+			} else if (grade === "최악") {
+				imageSrc = process.env.PUBLIC_URL + '/images/markerRed.png';
+			} else { //점검중
+				imageSrc = process.env.PUBLIC_URL + '/images/markerGray.png';
+			}
+
+			/* 마커 정보 설정 */
+			let newMarker = {
+				map: map,
+				position: new kakao.maps.LatLng(List[i].dmX, List[i].dmY), // 마커를 표시할 위치
+				title: List[i].stationName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다.
+				image: new kakao.maps.MarkerImage(imageSrc, new kakao.maps.Size(50, 35)),
+			};
+
+			/* 커스텀 오버레이를 생성합니다. */
+			//커스텀 오버레이에 표출될 내용입니다.(측정 수치 또는 점검중)
+			let content = '<div style="color: white; font-size:1rem">' +
+				`<span class="title">${val}</span>` +
+				'</div>';
+
+			let newOverlay = {
+				map: map,
+				position: new kakao.maps.LatLng(List[i].dmX, List[i].dmY),
+				content: content,
+				yAnchor: 1.34
+			}
+
+			markerArr.push(newMarker);
+			overlayArr.push(newOverlay);
+		}
+
+		/* 새로 찍을 마커&오버레이 배열 만들기 */
+		const newMarkers = markerArr.map(marker => 
+			new kakao.maps.Marker(marker)
+		);
+
+		const newOverlays = overlayArr.map(overlay =>
+			new kakao.maps.CustomOverlay(overlay)
+		);
+		
+		/* 기존 마커&오버레이 삭제 후 새로운 마커&오버레이 찍기 */
+		setMarkers(markers => {
+			markers.forEach(marker => marker.setMap(null));
+			return newMarkers;
+		});
+
+		setOverlay(overlays => {
+			overlays.forEach(overlay => overlay.setMap(null));
+			return newOverlays;
+		});
+	}
 
 	/**맨 처음 지도 생성하기 */
 	useEffect(() => {
@@ -122,81 +212,10 @@ export const StationMap = ({ coord, name }) => {
 	}, [coord]);
 
 
-	//남서쪽과 북동쪽 위도, 경도에 따라 보이는 지도 영역 내의 측정소 정보를 불러옵니다.
+	/* 보이는 지도 영역 내의 측정소 정보를 불러옵니다. */
 	useEffect(() => {
-		for (let i = 0; i < station.length; i++) {
-			//console.log(i + "번째 측정소: ");
-			//console.log(station[i]);
-
-			/* 오염 물질에 따라 등급과 수치 설정하기 */
-			if (name === "CAI") {
-				grade = station[i].khaiState;
-				val = station[i].khaiValue;
-			} else if (name === "PM10") {
-				grade = station[i].pm10State;
-				val = station[i].pm10Value;
-			} else if (name === "PM25") {
-				grade = station[i].pm25State;
-				val = station[i].pm25Value;
-			} else if (name === "SO2") {
-				grade = station[i].so2State;
-				val = station[i].so2Value;
-			} else if (name === "NO2") {
-				grade = station[i].no2State;
-				val = station[i].no2Value;
-			} else if (name === "CO") {
-				grade = station[i].coState;
-				val = station[i].coValue;
-			} else if (name === "O3") {
-				grade = station[i].o3State;
-				val = station[i].o3Value;
-			}
-
-			/* 등급에 따라 마커 이미지(색상) 설정하기 */
-			let imageSrc;
-			if (grade === "좋음") {
-				imageSrc = process.env.PUBLIC_URL + '/images/markerBlue.png';
-			} else if (grade === "보통") {
-				imageSrc = process.env.PUBLIC_URL + '/images/markerGreen.png';
-			} else if (grade === "나쁨") {
-				imageSrc = process.env.PUBLIC_URL + '/images/markerOrange.png';
-			} else if (grade === "최악") {
-				imageSrc = process.env.PUBLIC_URL + '/images/markerRed.png';
-			} else { //점검중
-				imageSrc = process.env.PUBLIC_URL + '/images/markerGray.png';
-			}
-			if (val === -1) {
-				val = "점검중";
-			}
-
-			/* 마커와 오버레이 초기화 */
-			setMarker([]);
-			setOverlay([]);
-
-			/* 마커를 생성합니다. */
-			let markerData = {
-				map: map, // 마커를 표시할 지도
-				position: new kakao.maps.LatLng(station[i].dmX, station[i].dmY), // 마커를 표시할 위치
-				title: station[i].stationName, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다.
-				image: new kakao.maps.MarkerImage(imageSrc, new kakao.maps.Size(50, 35)),
-			}
-			setMarker([new kakao.maps.Marker(markerData), ...marker]);
-
-			/* 커스텀 오버레이를 생성합니다. */
-			//커스텀 오버레이에 표출될 내용입니다.(측정 수치 또는 점검중)
-			let content = '<div style="color: white; font-size:1rem">' +
-				`<span class="title">${val}</span>` +
-				'</div>';
-
-			let overlayData = {
-				map: map,
-				position: new kakao.maps.LatLng(station[i].dmX, station[i].dmY),
-				content: content,
-				yAnchor: 1.34
-			}
-			setOverlay([new kakao.maps.CustomOverlay(overlayData), ...overlay]);
-		}
-	}, [coord, station, name]);
+		addMarker(stations);
+	}, [stations, name]);
 
 	return (
 		<div id='kakaoMap'
