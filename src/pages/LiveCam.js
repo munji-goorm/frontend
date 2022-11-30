@@ -51,32 +51,32 @@ export default function LiveCam({ coord }) {
 
 			{
 				clickBtn ?
-				<div className='w-[63rem] h-[1rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
-				<div className='flex items-center'>
-					미세먼지 적은 날과 비교하기
-					<button onClick={() => {
-						setClickBtn(false)
-					}}>
-					<DropDownArrowIcon id="drop-down-icon" className='inline w-5 rotate-180' />
-					</button>
-				</div>
-			</div>
-				:
-				<div className='w-[63rem] h-[10rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
-				<div className='flex items-center'>
-					미세먼지 적은 날과 비교하기
-					<button onClick={() => {
-						setClickBtn(true)
-					}}>
-					<DropDownArrowIcon id="drop-down-icon" className='inline w-5' />
-					</button>
-				</div>
-				<div className='w-[63rem] flex items-stretch justify-between'>
-					<img className="float-left w-[20.1rem]" alt="seoulGood" src={seoulGood} />
-					<img className="float-left w-[20.1rem]" alt="busanGood" src={busanGood} />
-					<img className="float-left w-[20.1rem]" alt="jejuGood" src={jejuGood} />
-				</div>
-			</div>
+					<div className='w-[63rem] h-[1rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
+						<button onClick={() => {
+							setClickBtn(false)
+						}}>
+							<div className='flex items-center'>
+								미세먼지 적은 날과 비교하기
+								<DropDownArrowIcon id="drop-down-icon" className='inline w-5' />
+							</div>
+						</button>
+					</div>
+					:
+					<div className='w-[63rem] h-[10rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
+						<button onClick={() => {
+							setClickBtn(true)
+						}}>
+							<div className='flex items-center'>
+								미세먼지 적은 날과 비교하기
+								<DropDownArrowIcon id="drop-down-icon" className='inline w-5 rotate-180' />
+							</div>
+						</button>
+						<div className='w-[63rem] flex items-stretch justify-between'>
+							<img className="float-left w-[20.1rem]" alt="seoulGood" src={seoulGood} />
+							<img className="float-left w-[20.1rem]" alt="busanGood" src={busanGood} />
+							<img className="float-left w-[20.1rem]" alt="jejuGood" src={jejuGood} />
+						</div>
+					</div>
 			}
 		</div>
 	)
