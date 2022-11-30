@@ -212,7 +212,7 @@ export const StationMap = ({ coord, name }) => {
 	}, [coord]);
 
 
-	/* 보이는 지도 영역 내의 측정소 정보를 불러옵니다. */
+	/* 보이는 지도 영역 내의 측정소 마커를 표시합니다. */
 	useEffect(() => {
 		addMarker(stations);
 	}, [stations, name]);
