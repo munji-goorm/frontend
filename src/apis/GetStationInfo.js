@@ -23,12 +23,11 @@ export const GetStationInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 		stationName: "중구"
 	});
 
-	const url = process.env.REACT_APP_BACKEND_URL;
 	const endpoint = '/map'
 
 	/* call Ajax */
 	const getStationInfo = async () => {
-		await axios.get(url + endpoint, {
+		await axios.get(endpoint, {
 			params: {
 				mapLevel: mapLevel,
 				xOne: xOne,
@@ -38,15 +37,12 @@ export const GetStationInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 			}
 		})
 		.then(function(response){
-			// handle success
-			console.log("-----------called GetStationInfo: 측정소 마커 불러오기-----------");
-			console.log(response.data.data);
+			//handle success
 			setStationData(response.data.data);
 		})
 		.catch(function(error){
-			// handle error
-			//alert("서버 오류로 측정소 정보를 가져오지 못했습니다.");
-			console.log("서버 오류로 측정소 정보를 가져오지 못했습니다.");
+			//handle error
+			alert("서버 오류로 측정소 정보를 가져오지 못했습니다.");
 			console.log(error.message);
 		})
 	};

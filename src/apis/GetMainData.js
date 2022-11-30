@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export const GetMainData = (lat, lng) => {
-	const url = process.env.REACT_APP_BACKEND_URL;
 	const endpoint = '/main';
 
 	/* 대기 오염 데이터  */
@@ -19,20 +18,18 @@ export const GetMainData = (lat, lng) => {
 
 	/* call Ajax */
 	const getPollutantData = async () => {
-		await axios.get(url + endpoint, {
+		await axios.get(endpoint, {
 			params: {
 				latitude: lat,
 				longitude: lng
 			}
 		})
 		.then(function(response){
-			// handle success
-			console.log("-----------called GetMainData-----------");
-			console.log(response.data.data);
+			//handle success
 			setPollutantData(response.data.data);
 		})
 		.catch(function(error) {
-			// handle error
+			//handle error
 			alert("서버 오류로 대기오염 정보를 가져오지 못했습니다.");
 			console.log(error.message);
 		})

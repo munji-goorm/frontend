@@ -13,14 +13,11 @@ export const GetLocation = () => {
 			lat,
 			lng,
 		});
-		console.log("-----------success geolocation API-----------");
-		console.log(lat, lng);
 	}
 
 	/* Geolocation 호출 실패 */
 	const onError = (error) => {
 		alert("일시적으로 내 위치를 확인할 수 없습니다. 지역검색 버튼을 통해 원하는 지역을 선택하여 대기 오염을 확인할 수 있습니다.");
-		console.log("-----------failed geolocation API-----------");
 		console.log(error);
 	}
 

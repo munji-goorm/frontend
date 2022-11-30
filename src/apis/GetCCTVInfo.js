@@ -11,12 +11,11 @@ export const GetCCTVInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 		yCoord: 126.89889,
 	});
 
-	const url = process.env.REACT_APP_BACKEND_URL;
 	const endpoint = '/cctv';
 
 	/* call Ajax */
 	const getData = async () => {
-		await axios.get(url + endpoint, {
+		await axios.get(endpoint, {
 			params: {
 				mapLevel: mapLevel,
 				xOne: xOne,
@@ -26,15 +25,13 @@ export const GetCCTVInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 			}
 		})
 		.then(function(response){
-			// handle success
-			console.log("-----------called GetCCTVInfo: CCTV 마커 불러오기-----------");
-			console.log(response.data.data);
+			//handle success
 			setCctv(response.data.data);
 		})
 		.catch(function(error){
-			// handle error
-			//alert("서버 오류로 CCTV 데이터를 가져오지 못했습니다.");
-			console.log("서버 오류로 CCTV 데이터를 가져오지 못했습니다.");
+			//handle error
+			alert("서버 오류로 CCTV 데이터를 가져오지 못했습니다.");
+			console.log(error.message);
 		})
 	}
 	
