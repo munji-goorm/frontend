@@ -11,9 +11,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Generate Environment Variables File for Production
-      run: echo "REACT_APP_KAKAOMAP_API_KEY_JS">>.env.production
       env: 
         REACT_APP_KAKAOMAP_API_KEY_JS: ${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }}
+      run: |
+        echo "REACT_APP_KAKAOMAP_API_KEY_JS">>.env.production
+        cat .env.production
+        ls -al
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
