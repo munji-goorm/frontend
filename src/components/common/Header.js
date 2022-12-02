@@ -5,7 +5,7 @@ import { ReactComponent as LocationIcon } from '../../assets/icons/location.svg'
 import { ReactComponent as DropDownArrowIcon } from '../../assets/icons/dropDownArrow.svg';
 import { SearchBox } from './SearchBox';
 
-export default function Header({ addr, setAddr, setCoord }) {
+export default function Header({ shortAddr, setShortAddr, setCoord }) {
 	const [searchBtn, setSearchBtn] = useState(true);
 	const header = useRef();
 	const location = useLocation();
@@ -46,7 +46,7 @@ export default function Header({ addr, setAddr, setCoord }) {
 								}}>
 									<LocationIcon className='inline w-6' />
 								</button>
-								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{addr}</div>
+								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{shortAddr}</div>
 
 								<button onClick={() => {
 									setSearchBtn(false)
@@ -116,7 +116,7 @@ export default function Header({ addr, setAddr, setCoord }) {
 
 							<div className='ml-[11rem] flex items-center'>
 								<LocationIcon className='inline w-6' />
-								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{addr}</div>
+								<div className='ml-3 mr-2 text-xl font-semibold text-[#272727]'>{shortAddr}</div>
 								<button onClick={() => {
 									setSearchBtn(true)
 								}} className="searchBtn">
@@ -172,7 +172,7 @@ export default function Header({ addr, setAddr, setCoord }) {
 							}
 						</div>
 					</div>
-					<SearchBox setAddr={setAddr} setCoord={setCoord} setSearchBtn={setSearchBtn} />
+					<SearchBox setShortAddr={setShortAddr} setCoord={setCoord} setSearchBtn={setSearchBtn} />
 				</div>
 			}
 		</>
