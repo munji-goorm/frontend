@@ -9,6 +9,12 @@ jobs:
     steps:
     - name: Checkout Actions
       uses: actions/checkout@v3
+
+    - name: Generate Environment Variables File for Production
+      run: echo "REACT_APP_KAKAOMAP_API_KEY_JS">>.env.production
+      env: 
+        REACT_APP_KAKAOMAP_API_KEY_JS: ${{ secrets.REACT_APP_KAKAOMAP_API_KEY_JS }}
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
@@ -49,7 +55,7 @@ jobs:
     - name: git push image tag to k8 repo
       run: |
         cd manifest
-        sed -i "25 c\        image: 320451040304.dkr.ecr.ap-northeast-2.amazonaws.com/munji-frontend:${{ github.sha }}" front-deploy.yaml
+        sed -i "31 c\        image: 320451040304.dkr.ecr.ap-northeast-2.amazonaws.com/munji-frontend:${{ github.sha }}" front-deploy.yaml
         git add .
         git commit -m "Edit front image tag"
         git push -f --set-upstream origin main
