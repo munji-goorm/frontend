@@ -5,8 +5,7 @@ import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
 export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 	/* 특정 시간 동안 연속적으로 호출되는 이벤트 중 마지막 이벤트만 호출  */
-	//callback: 일정 시간이 지난 후 실행되는 함수, delay: 지연 시간
-	const debounce = (callback, delay) => {
+	const debounce = (callback, delay) => {//callback: 일정 시간이 지난 후 실행되는 함수, delay: 지연 시간
 		let timer;
 		return (...args) => {
 			clearTimeout(timer);
@@ -136,12 +135,12 @@ export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 						value={inputValue}
 						onChange={changeInputValue}
 						onKeyUp={handleDropDownKey}
-					/>
+				/>
 				</div>
 				<div>
 					<div className='mt-[1rem] w-[58rem] h-[2rem] flex items-center text-lg'>
-						<div className='w-[6rem] mr-2 text-[#878787]'>최근 검색</div>
-						{localStorage.getItem('word')
+						<div className='mr-2 text-[#878787]'>최근 검색</div>
+						{localStorage.getItem('word') !== '[]'
 						? <div className='w-[50rem] flex overflow-x-auto'>
 							{JSON.parse(localStorage.getItem('word')).map((word, index) => {
 							return (
@@ -159,7 +158,7 @@ export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 							)
 						})}
 						</div>
-						: <div className='text-[#878787]'>기록이 없습니다.</div>
+						:<div className='text-[#878787]'>기록이 없습니다.</div>
 						}
 						
 					</div>

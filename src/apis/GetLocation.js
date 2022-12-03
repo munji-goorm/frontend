@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 
 /** Geolocation API - 사용자 현재 위치(위도, 경도)를 불러옵니다. */
-export const GetLocation = () => {
+export function GetLocation() {
 	let lat, lng; //위도, 경도
-	const [location, setLocation] = useState();
+	//const [location, setLocation] = useState();
 
 	/* Geolocation 호출 성공 */
 	const onSuccess = (location) => {
 		lat = location.coords.latitude;
 		lng = location.coords.longitude;
-		setLocation({
-			lat,
-			lng,
-		});
+		// setLocation({
+		// 	lat,
+		// 	lng,
+		// });
 		console.log("-----------success geolocation API-----------");
-		console.log(lat, lng);
+		// console.log(lat, lng);
 	}
 
 	/* Geolocation 호출 실패 */
@@ -24,7 +24,7 @@ export const GetLocation = () => {
 		console.log(error);
 	}
 
-	useEffect(() => {
+	// useEffect(() => {
 		const { geolocation } = navigator;
 
 		// 사용자 브라우저에서 Geolocation이 정의되지 않은 경우 오류로 처리합니다.
@@ -38,7 +38,7 @@ export const GetLocation = () => {
 			maximumAge: 1000 * 3600 * 24, //24h
 			timeout: 5000, //5sec
 		});
-	}, []);
+	// }, []);
 
-	return location
+	return 
 }

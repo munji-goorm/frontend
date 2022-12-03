@@ -3,37 +3,32 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header, Footer } from './components/common';
 import { AirPollution, LiveCam, OntheMap } from './pages';
 import { useEffect, useState } from 'react';
-import { GetLocation, GetMainData } from './apis';
+import { Coord2Addr, GetLocation, GetMainData } from './apis';
 
 function App() {
-  // let location = GetLocation(); //geolocation API를 통해 현재 위치 가져오기
   const [coord, setCoord] = useState({ //위도, 경도
-    lat: 37.564639, //서울시 중구 측정소 위도
-    lng: 126.975961, //서울시 중구 측정소 경도
+    lat: 37.5607179, //서울시 중구 의주로2가 위도
+    lng: 126.9695899, //서울시 중구 의주로2가 경도
   });
   const [shortAddr, setShortAddr] = useState("중구 의주로2가"); //지역(xx구 oo동)
   const [fullAddr, setFullAddr] = useState("서울특별시 중구 의주로2가");
-
-  /* 현재 위치로 위도/경도 변경 */
-  // useEffect(() => {
-  //   if (location) {
-  //     setCoord({
-  //       lat: location.lat,
-  //       lng: location.lng
-  //     });
-  //   }
-  // }, [location]);
   
+  //let addr = Coord2Addr(coord);
   let stationData = GetMainData(fullAddr); //현재 위치에서 근접측정소의 대기오염정보
   
+  // useEffect(()=> {
+  //   setFullAddr(addr);
+  // }, []);
+
   /* 현재 지역 변경 */
   useEffect(() => {
     setShortAddr(stationData.stationInfo.shortAddr);
+    //setFullAddr(addr)
   }, [stationData]);
 
   return (
     <BrowserRouter>
-      <Header shortAddr={shortAddr} setShortAddr={setShortAddr} setCoord={setCoord} />
+      <Header shortAddr={shortAddr} setShortAddr={setShortAddr} setFullAddr={setFullAddr} coord={coord} setCoord={setCoord} />
       <Routes>
         <Route exact path="/" element={
           <AirPollution stationData={stationData}/>
