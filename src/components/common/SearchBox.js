@@ -3,7 +3,7 @@ import { ReactComponent as SearchIcon } from '../../assets/icons/search.svg';
 import axios from 'axios';
 import { ReactComponent as DeleteIcon } from '../../assets/icons/delete.svg';
 
-export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
+export const SearchBox = ({ setShortAddr, setFullAddr, setCoord, setSearchBtn }) => {
 	/* 특정 시간 동안 연속적으로 호출되는 이벤트 중 마지막 이벤트만 호출  */
 	const debounce = (callback, delay) => {//callback: 일정 시간이 지난 후 실행되는 함수, delay: 지연 시간
 		let timer;
@@ -16,28 +16,73 @@ export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 	// localStorage.clear();
 	/**최근 검색어 */
 	//localStorage의 데이터를 꺼내서 배열로 변환한다.
-	let addrArr = JSON.parse(localStorage.getItem('word'));
-	if (addrArr === null) {
+	let shortAddrArr = JSON.parse(localStorage.getItem('shortAddr'));
+	if (shortAddrArr === null) {
 		//최초 접속시 localStorage에 데이터가 없을 경우 새로운 배열 생성하기
-		addrArr = [];
+		shortAddrArr = [];
 	}
 
-	const submitRecentWord = clickedItem => {
-		// setAddr(clickedItem.shortAddr);
-		// setCoord({
-		// 	lat: clickedItem.xCoord,
-		// 	lng: clickedItem.yCoord
-		// });
+	let fullAddrArr = JSON.parse(localStorage.getItem('fullAddr'));
+	if (fullAddrArr === null) {
+		fullAddrArr = [];
+	}
+
+	let xCoordArr = JSON.parse(localStorage.getItem('xCoord'));
+	if (xCoordArr === null) {
+		xCoordArr = [];
+	}
+
+	let yCoordArr = JSON.parse(localStorage.getItem('yCoord'));
+	if (yCoordArr === null) {
+		yCoordArr = [];
+	}
+
+	const submitRecentWord = shortAddr => {
+		let idx;
+		for (let i=0; i<shortAddrArr.length; i++) {
+			if (shortAddrArr[i] === shortAddr) {
+				idx = i;
+				break;
+			}
+		}
+		
+		setFullAddr(fullAddrArr[idx]);
+		setShortAddr(shortAddrArr[idx]);
+		setCoord({
+			lat: xCoordArr[idx],
+			lng: yCoordArr[idx],
+		});
+		setSearchBtn(true);
 	}
 
 	//최근 검색어 삭제
-	const deleteRecentWord = (word) => {
+	const deleteRecentWord = shortAddr => {
 		//버튼 안보이게 처리
-		document.getElementById(word).style.display = 'none';
+		document.getElementById(shortAddr).style.display = 'none';
 		//삭제할 주소를 제외하고 새로운 배열을 생성한다.
-		addrArr = addrArr.filter((items) => items !== word);
+		//shortAddrArr = shortAddrArr.filter((items) => items !== shortAddr);
+		let idx;
+		for (let i=0; i<shortAddrArr.length; i++) {
+			if (shortAddrArr[i] === shortAddr) {
+				idx = i;
+				shortAddrArr.splice(i, 1);
+				break;
+			}
+		}
+		for (let i=0; i<fullAddrArr.length; i++) {
+			if (i === idx){
+				fullAddrArr.splice(i, 1);
+				xCoordArr.splice(i, 1);
+				yCoordArr.splice(i, 1);
+				break;
+			}
+		}
+		
 		//새로운 배열을 localStorage에 저장한다.
-		localStorage.setItem('word', JSON.stringify(addrArr));
+		localStorage.setItem('shortAddr', JSON.stringify(shortAddrArr));
+		localStorage.setItem('fullAddr', JSON.stringify(fullAddrArr));
+		localStorage.setItem('xCoord', JSON.stringify(xCoordArr));
+		localStorage.setItem('yCoord', JSON.stringify(yCoordArr));
 	}
 
 
@@ -80,7 +125,8 @@ export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 	const clickDropDownItem = clickedItem => {
 		setInputValue(clickedItem.shortAddr);
 		setIsHaveInputValue(false);
-		setAddr(clickedItem.shortAddr);
+		setShortAddr(clickedItem.shortAddr);
+		setFullAddr(clickedItem.fullAddr);
 		setCoord({
 			lat: clickedItem.xCoord,
 			lng: clickedItem.yCoord
@@ -89,20 +135,41 @@ export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 		document.getElementById('drop-down-icon').classList.remove('rotate-180');
 		
 		/* 최근 검색어 저장 */
-		let newAddr = clickedItem.fullAddr;
-		//새로 검색한 주소를 추가한다.
-		addrArr.unshift(newAddr); //배열의 맨 앞에 추가한다.
-		//중복된 주소는 제거한다.
-		addrArr = new Set(addrArr);
-		//중복 제거된 set 자료형의 addrArr를 일반 배열로 변경한다.
-		addrArr =[...addrArr];
+		let newShortAddr = clickedItem.shortAddr;
+		let newFullAddr = clickedItem.fullAddr;
+		let newXCoord = clickedItem.xCoord;
+		let newYCoord = clickedItem.yCoord;
 		
-		if (addrArr.length > 3) { //최근 검색 3개까지만 저장
-			addrArr.pop();
+		//새로 검색한 주소를 추가한다.
+		shortAddrArr.unshift(newShortAddr); //배열의 맨 앞에 추가한다.
+		fullAddrArr.unshift(newFullAddr);
+		xCoordArr.unshift(newXCoord);
+		yCoordArr.unshift(newYCoord);
+		
+		//중복된 주소는 제거한다.
+		shortAddrArr = new Set(shortAddrArr);
+		fullAddrArr = new Set(fullAddrArr);
+		xCoordArr = new Set(xCoordArr);
+		yCoordArr = new Set(yCoordArr);
+		
+		//중복 제거된 set 자료형의 addrArr를 일반 배열로 변경한다.
+		shortAddrArr =[...shortAddrArr];
+		fullAddrArr =[...fullAddrArr];
+		xCoordArr = [...xCoordArr];
+		yCoordArr = [...yCoordArr];
+		
+		if (shortAddrArr.length > 5) { //최근 검색 5개까지만 저장
+			shortAddrArr.pop();
+			fullAddrArr.pop();
+			xCoordArr.pop();
+			yCoordArr.pop();
 		}
 		
 		//localStorage에 저장한다.
-		localStorage.setItem('word', JSON.stringify(addrArr));
+		localStorage.setItem('shortAddr', JSON.stringify(shortAddrArr));
+		localStorage.setItem('fullAddr', JSON.stringify(fullAddrArr));
+		localStorage.setItem('xCoord', JSON.stringify(xCoordArr));
+		localStorage.setItem('yCoord', JSON.stringify(yCoordArr));
 	}
 
 	const handleDropDownKey = event => {
@@ -140,25 +207,25 @@ export const SearchBox = ({ setAddr, setCoord, setSearchBtn }) => {
 				<div>
 					<div className='mt-[1rem] w-[58rem] h-[2rem] flex items-center text-lg'>
 						<div className='mr-2 text-[#878787]'>최근 검색</div>
-						{localStorage.getItem('word') !== '[]'
-						? <div className='w-[50rem] flex overflow-x-auto'>
-							{JSON.parse(localStorage.getItem('word')).map((word, index) => {
+						{(localStorage.getItem('shortAddr') && localStorage.getItem('shortAddr') !== '[]')
+						? <div className='w-[53rem] flex overflow-x-auto'>
+							{JSON.parse(localStorage.getItem('shortAddr')).map((shortAddr, index) => {
 							return (
 								<button
 									key={index}
-									id={word}
+									id={shortAddr}
 									className="flex items-center px-2 mx-1 bg-[#f4f4f4] text-[#777777] rounded-xl hover:border-2 break-normal"
-									onClick={() => {submitRecentWord(word)}}
+									onClick={() => {submitRecentWord(shortAddr)}}
 								>
-									{word}
+									{shortAddr}
 									<DeleteIcon 
 										className='inline ml-1 rounded hover:bg-red-400'
-										onClick={() => {deleteRecentWord(word)}} />
+										onClick={() => {deleteRecentWord(shortAddr)}} />
 								</button>
 							)
 						})}
 						</div>
-						:<div className='text-[#878787]'>기록이 없습니다.</div>
+						:	<div className='text-[#878787]'>기록이 없습니다.</div>
 						}
 						
 					</div>
