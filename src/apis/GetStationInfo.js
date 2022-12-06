@@ -43,7 +43,7 @@ export const GetStationInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 		.catch(function(error){
 			//handle error
 			alert("서버 오류로 측정소 정보를 가져오지 못했습니다.");
-			console.log(error.message);
+			// console.log(error.message);
 		})
 	};
 	

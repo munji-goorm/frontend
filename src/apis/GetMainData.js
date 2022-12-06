@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export const GetMainData = (lat, lng) => {
+export const GetMainData = (fullAddr) => {
 	const endpoint = '/main';
 
 	/* 대기 오염 데이터  */
@@ -20,8 +20,7 @@ export const GetMainData = (lat, lng) => {
 	const getPollutantData = async () => {
 		await axios.get(endpoint, {
 			params: {
-				latitude: lat,
-				longitude: lng
+				fullAddr: fullAddr
 			}
 		})
 		.then(function(response){
@@ -37,7 +36,7 @@ export const GetMainData = (lat, lng) => {
 
 	useEffect(() => {
 		getPollutantData();
-	}, [lat, lng]);
+	}, [fullAddr]);
 
 	return pollutantData
 }

@@ -31,7 +31,7 @@ export const GetCCTVInfo = (mapLevel, xOne, xTwo, yOne, yTwo) => {
 		.catch(function(error){
 			//handle error
 			alert("서버 오류로 CCTV 데이터를 가져오지 못했습니다.");
-			console.log(error.message);
+			// console.log(error.message);
 		})
 	}
 	
