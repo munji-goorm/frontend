@@ -63,7 +63,8 @@ export default function LiveCam({ coord }) {
 					</div>
 					:
 					<div className='w-[63rem] h-[10rem] my-[1rem] text-[#272727] flex flex-col font-medium text-sm'>
-						<button onClick={() => {
+						<button className='w-fit'
+							onClick={() => {
 							setClickBtn(true)
 						}}>
 							<div className='flex items-center'>
