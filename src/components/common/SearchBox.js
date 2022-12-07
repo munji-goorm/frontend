@@ -45,7 +45,7 @@ export const SearchBox = ({ setShortAddr, setFullAddr, setCoord, setSearchBtn })
 				break;
 			}
 		}
-		
+
 		setFullAddr(fullAddrArr[idx]);
 		setShortAddr(shortAddrArr[idx]);
 		setCoord({
@@ -71,14 +71,14 @@ export const SearchBox = ({ setShortAddr, setFullAddr, setCoord, setSearchBtn })
 			}
 		}
 		for (let i=0; i<fullAddrArr.length; i++) {
-			if (i === idx){
+			if (i === idx) {
 				fullAddrArr.splice(i, 1);
 				xCoordArr.splice(i, 1);
 				yCoordArr.splice(i, 1);
 				break;
 			}
 		}
-		
+
 		//새로운 배열을 localStorage에 저장한다.
 		localStorage.setItem('shortAddr', JSON.stringify(shortAddrArr));
 		localStorage.setItem('fullAddr', JSON.stringify(fullAddrArr));
@@ -134,38 +134,38 @@ export const SearchBox = ({ setShortAddr, setFullAddr, setCoord, setSearchBtn })
 		});
 		setSearchBtn(true);
 		document.getElementById('drop-down-icon').classList.remove('rotate-180');
-		
+
 		/* 최근 검색어 저장 */
 		let newShortAddr = clickedItem.shortAddr;
 		let newFullAddr = clickedItem.fullAddr;
 		let newXCoord = clickedItem.xCoord;
 		let newYCoord = clickedItem.yCoord;
-		
+
 		//새로 검색한 주소를 추가한다.
 		shortAddrArr.unshift(newShortAddr); //배열의 맨 앞에 추가한다.
 		fullAddrArr.unshift(newFullAddr);
 		xCoordArr.unshift(newXCoord);
 		yCoordArr.unshift(newYCoord);
-		
+
 		//중복된 주소는 제거한다.
 		shortAddrArr = new Set(shortAddrArr);
 		fullAddrArr = new Set(fullAddrArr);
 		xCoordArr = new Set(xCoordArr);
 		yCoordArr = new Set(yCoordArr);
-		
+
 		//중복 제거된 set 자료형의 addrArr를 일반 배열로 변경한다.
-		shortAddrArr =[...shortAddrArr];
-		fullAddrArr =[...fullAddrArr];
+		shortAddrArr = [...shortAddrArr];
+		fullAddrArr = [...fullAddrArr];
 		xCoordArr = [...xCoordArr];
 		yCoordArr = [...yCoordArr];
-		
+
 		if (shortAddrArr.length > 5) { //최근 검색 5개까지만 저장
 			shortAddrArr.pop();
 			fullAddrArr.pop();
 			xCoordArr.pop();
 			yCoordArr.pop();
 		}
-		
+
 		//localStorage에 저장한다.
 		localStorage.setItem('shortAddr', JSON.stringify(shortAddrArr));
 		localStorage.setItem('fullAddr', JSON.stringify(fullAddrArr));
@@ -194,50 +194,49 @@ export const SearchBox = ({ setShortAddr, setFullAddr, setCoord, setSearchBtn })
 	return (
 		<div id="search-box" className='flex items-center flex-col fixed top-[4rem] z-20 w-full h-[25rem] bg-[#ffffff]'>
 			<div className='w-[63rem] h-[25rem] flex flex-col items-center'>
-				<div className='flex items-center mt-[1.5rem] w-[58rem] h-[3rem] bg-[#f4f4f4] rounded-3xl'>
+				<div className='flex items-center mt-[1.5rem] w-[63rem] h-[3rem] bg-[#f4f4f4] rounded-3xl'>
 					<SearchIcon className='ml-4' />
 					<input
 						ref={inputBox}
 						type="text" placeholder="지역으로 검색하세요."
-						className='bg-[#f4f4f4] w-[53rem] outline-none ml-2'
+						className='bg-[#f4f4f4] w-[58rem] outline-none ml-2'
 						value={inputValue}
 						onChange={changeInputValue}
 						onKeyUp={handleDropDownKey}
-				/>
+					/>
 				</div>
-				<div>
-					<div className='mt-[1rem] w-[58rem] h-[2rem] flex items-center text-lg'>
+				<div className='w-[63rem] h-[4rem]'>
+					<div className='mt-[1rem] flex items-center text-lg'>
 						<div className='mr-[0.5rem] text-[#878787]'>최근 검색</div>
 						{(localStorage.getItem('shortAddr') && localStorage.getItem('shortAddr') !== '[]')
-						? <div className='flex'>
-							{JSON.parse(localStorage.getItem('shortAddr')).map((shortAddr, index) => {
-							return (
-								<div id={shortAddr} className="flex hover:border-2 bg-[#f4f4f4] rounded-xl items-center mr-2">
-								<button
-									key={index}
-									className="pl-2 mx-1 text-[#777777] rounded-xl"
-									onClick={() => {
-										submitRecentWord(shortAddr)
-									}}
-								>
-									{shortAddr}
-									</button>
-									<DeleteIcon 
-										className='inline mr-2 rounded hover:bg-red-400 hover:cursor-pointer'
-										onClick={() => {
-											console.log("delete");
-											deleteRecentWord(shortAddr)
-											}} />
-								</div>
-							)
-						})}
-						</div>
-						:	<div className='text-[#878787]'>기록이 없습니다.</div>
+							? <div className='flex'>
+								{JSON.parse(localStorage.getItem('shortAddr')).map((shortAddr, index) => {
+									return (
+										<div id={shortAddr} className="flex hover:border-2 bg-[#f4f4f4] rounded-xl items-center mr-2">
+											<button
+												key={index}
+												className="pl-2 mx-1 text-[#777777] rounded-xl"
+												onClick={() => {
+													submitRecentWord(shortAddr)
+												}}
+											>
+												{shortAddr}
+											</button>
+											<DeleteIcon
+												className='inline mr-2 rounded hover:bg-red-400 hover:cursor-pointer'
+												onClick={() => {
+													deleteRecentWord(shortAddr)
+												}} />
+										</div>
+									)
+								})}
+							</div>
+							: <div className='text-[#878787]'>기록이 없습니다.</div>
 						}
-						
+
 					</div>
 					{isHaveInputValue && (
-						<div className='mt-[1rem] w-[58rem] h-[15.5rem] overflow-auto'>
+						<div className='mt-[1rem] w-[63rem] h-[15.5rem] overflow-auto'>
 							{dropDownList.map((dropDownItem, dropDownIndex) => {
 								return (
 									<div
